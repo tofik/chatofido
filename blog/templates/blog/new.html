@@ -1,0 +1,32 @@
+{% extends "home.html" %}
+
+{% block application %}
+
+<form action="/blog/new/" method="POST">
+  
+  <fieldset>
+    <p>
+      <label class="field_name" for="content">Post content:</label>
+    </p>
+    <p>
+      <span class="field_value">{{form.content}}</span>
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <p>
+      <lanel class="field_name" for="author">Signature:</label>
+      <span calss="field_name">{{form.author}}</span>
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <div class="field_submit">
+      <input type="submit" name="submit_post" value="Submit Post!" />
+    </div>
+  </fieldset>
+
+</form>
+
+{% endblock %}
+

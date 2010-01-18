@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>cHaToFiDo blo(G)</title>
-<link href="/templates/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -21,10 +21,12 @@
     <div class="contant_1">
 	<div class="contant_1_left">
 	  <h2>
+
+{% block application %}
        What is Lorem Ipsum?
        <span>September 1, 2009 | (0) Comments</span>
       </h2>
-	  <img src="images/c1_i1.png" width="277" height="266" alt="" />
+	  <img src="/static/images/c1_i1.png" width="277" height="266" alt="" />
 	  <h3>What We Speak.</h3>
 	  <br class="clear bottomClear" />
 	  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.<br /><br />
@@ -125,6 +127,8 @@ There are many variations of passages of <a href="#">Lorem Ipsum</a> available:<
 	 <span>Copyright 2009 Lorem Ipsum. All Rights Reserved</span>
 	</p>
    </div>
+{% endblock %}
+
     {% block body %}
     to jest ble bel bel
     {% endblock %}
