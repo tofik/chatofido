@@ -1,0 +1,74 @@
+body {
+    color: black;
+    font-family: courier;
+}
+
+ul {
+    list-style: none;
+}
+
+#header {
+    float: left;
+    clear: right;
+    border: 1px solid white;
+    width: 250;
+    height: 50;
+}
+
+#buffer_left {
+    width: 50%;
+    float: left;
+    clear: left;
+    border: 1px dashed white;
+    margin-left: 10px;
+}
+
+#buffer_left li {
+    border-bottom: 1px solid blue;
+    border-left: 1px solid blue;
+}
+
+#buffer_center {
+    width: 15%;
+    float: left;
+    border: 1px dashed orange;
+    margin-left: 10px;
+}
+
+#menu {
+    border: 1px dotted white;
+}
+
+#menu ul {
+    list-style-position: inside;
+    padding: 0 0 0 0px;
+    margin: 0 0 0 0;
+}
+
+#menu a {
+    text-decoration: none;
+    color: maroon;
+    display: block;
+    background-color: lightgrey;
+}
+
+#menu a:hover {
+    background-color: maroon;
+    color: lightgrey;
+}
+
+
+#buffer_right {
+}
+
+
+#logo_vertical {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 20%;
+    height: 700px;
+#    border: 1px dotted black;
+    clear: both;
+    background-image: url(chatofido_logo_v.jpg);
+}
