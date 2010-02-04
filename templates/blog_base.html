@@ -1,18 +1,41 @@
 <html>
   <head>
     <title> To jest blog cHani i Tomka </title>
-    <link rel="stylesheet" type="text/css" href="static/css/blog.css" /> 
+    <link rel="stylesheet" type="text/css" href="/static/css/blog.css" /> 
 
   </head>
 
 
-
-
-
   <body>
-    {% block body %}
-    to jest cialo
-    {% endblock %}
+    <div id="header">
+      {% block header %}
+      {% endblock %}
+      </div>
+
+    <div id="buffer_left">
+      {% block buffer_left %}
+      {% endblock %}
+      </div>
+
+    <div id="buffer_center">
+      <div id="menu">
+	{% block menu %}
+	{% endblock %}
+      </div>
+      {% block detailed_data %}
+      {% endblock %}
+
+    </div>
+
+
+    <div id="buffer_right">
+      </div>
+
+
+
+    <div id="logo_vertical">
+      </div>
+
   </body>
 
 </html>

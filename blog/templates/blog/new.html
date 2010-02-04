@@ -1,6 +1,11 @@
-{% extends "home.html" %}
+{% extends "blog_base.html" %}
 
-{% block application %}
+{% block header %}
+<img src="/static/css/banner_dodaj_post.jpg">
+{% endblock %}
+
+
+{% block buffer_left %}
 
 <form action="/blog/new/" method="POST">
   
@@ -30,3 +35,11 @@
 
 {% endblock %}
 
+{% block menu %}
+<ul>
+  <li><a href="/blog/list/">powrót do listy</a></li>
+  <li><a href="#"> - </a></li>
+  <li><a href="#"> - </a></li>
+  <li><a href="#"> - </a></li>
+  </ul>
+{% endblock %}

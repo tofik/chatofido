@@ -1,9 +1,38 @@
 {% extends "blog_base.html" %}
 
-{% block jakis %}
-dupa jaś
+{% block header %}
+<img src="/static/css/banner_tresc.jpg">
 {% endblock %}
 
-{% block body %}
-to jest z kolei lista wszystkich wpisow
+
+{% block buffer_left %}
+{% for post in posts %}
+<ul>
+  wpis z {{post.created}}<
+  <li> {{post.content}} </li>
+</ul>
+{% empty %}
+no posts available
+{% endfor %}
 {% endblock %}
+
+{% block detailed_data %}
+do tej pory posty dołączyli:
+{% for author in authors %}
+<ul>
+  <li>{{ author.author }}</li>
+ </ul>
+{% empty %}
+Jeszcze nikt nie raczył dodać żadnego posta
+{% endfor %}
+{% endblock %}
+
+{% block menu %}
+<ul>
+  <li><a href="/blog/new/">dodaj post</a></li>
+  <li><a href="#"> - </a></li>
+  <li><a href="#"> - </a></li>
+  <li><a href="#"> - </a></li>
+  </ul>
+{% endblock %}
+
