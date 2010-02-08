@@ -1,15 +1,21 @@
 {% extends "blog_base.html" %}
 
-{% block header %}
+{% block buffer_left_header %}
 <img src="/static/css/banner_tresc.jpg">
 {% endblock %}
 
 
-{% block buffer_left %}
+{% block buffer_left_main_window %}
 {% for post in posts %}
 <ul>
-  wpis z {{post.created}}<
-  <li> {{post.content}} </li>
+  <div style="font-size: 30; font-weight: bold;">{{ post.title }}</div>
+  <div style="font-style: italic; color:grey;">nadano {{ post.created }}</div>
+  <li> {{ post.content }}
+    <div style="float: right; font-size:10px; padding-top: 5; padding-bottom: 5;">
+      autor: {{ post.author }}<br> <a href="#" style="text-decoration: none; 
+						      color: white;"> dodaj komentarz</a>
+    </div>
+  </li>
 </ul>
 {% empty %}
 no posts available
@@ -29,10 +35,7 @@ Jeszcze nikt nie raczył dodać żadnego posta
 
 {% block menu %}
 <ul>
-  <li><a href="/blog/new/">dodaj post</a></li>
-  <li><a href="#"> - </a></li>
-  <li><a href="#"> - </a></li>
-  <li><a href="#"> - </a></li>
+  <li><a href="/blog/new/">DODAJ POST</a></li>
   </ul>
 {% endblock %}
 

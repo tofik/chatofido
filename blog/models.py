@@ -5,6 +5,7 @@ from django.db import models
 class Post(models.Model):
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=60)
     author = models.CharField(max_length=20)
 
     @models.permalink

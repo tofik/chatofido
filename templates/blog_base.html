@@ -7,20 +7,36 @@
 
 
   <body>
-    <div id="header">
-      {% block header %}
-      {% endblock %}
-      </div>
 
     <div id="buffer_left">
-      {% block buffer_left %}
+      <div id="buffer_left_header">
+	{% block buffer_left_header %}
+	{% endblock %}
+      </div>
+      <div id="buffer_left_upper_menu">
+	<a href="#" style="border-top:2px solid black;border-left:2px solid black;
+			   border-right:2px solid black;">cHaToFiDo</a>
+	<a href="#" style="border-top:2px solid black;border-left:2px solid black;
+			   border-right:2px solid black;">cHa____Do</a>
+	<a href="#" style="border-top:2px solid black;border-left:2px solid black;
+			   border-right:2px solid black;">___ToFi__</a>
+      </div>
+
+      <div id="buffer_left_main_window">
+      {% block buffer_left_main_window %}
       {% endblock %}
       </div>
+    </div>
 
     <div id="buffer_center">
       <div id="menu">
 	{% block menu %}
 	{% endblock %}
+	<ul>
+	  <li><a href="#"><img src="/static/css/archiwum.jpg" height=200px border=0></a></li>
+	  <li><a href="#"><img src="/static/css/polka_xsiazek.jpg" height=200px border=0></a></li>
+	  <li><a href="#"><img src="/static/css/pudelko.jpg" height=200px border=0></a></li>
+	</ul>
       </div>
       {% block detailed_data %}
       {% endblock %}

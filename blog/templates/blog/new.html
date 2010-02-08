@@ -1,29 +1,34 @@
 {% extends "blog_base.html" %}
 
-{% block header %}
+{% block buffer_left_header %}
 <img src="/static/css/banner_dodaj_post.jpg">
 {% endblock %}
 
 
-{% block buffer_left %}
+{% block buffer_left_main_window %}
 
 <form action="/blog/new/" method="POST">
   
-  <fieldset>
-    <p>
-      <label class="field_name" for="content">Post content:</label>
-    </p>
-    <p>
-      <span class="field_value">{{form.content}}</span>
-    </p>
-  </fieldset>
 
   <fieldset>
     <p>
-      <lanel class="field_name" for="author">Signature:</label>
-      <span calss="field_name">{{form.author}}</span>
+      <label class="field_name">Tytuł posta:</label>
+      <span class="field_value">{{ form.title }}</span>
+    </p>
+
+    <p>
+      <label class="field_name">post właściwy:</label>
+    </p>
+    <p>
+      <span class="field_value">{{ form.content }}</span>
+    </p>
+
+    <p>
+      <label class="field_name">Ktoś Ty?:</label>
+      <span class="filed_value">{{ form.author }}</span>
     </p>
   </fieldset>
+
 
   <fieldset>
     <div class="field_submit">
@@ -37,9 +42,6 @@
 
 {% block menu %}
 <ul>
-  <li><a href="/blog/list/">powrót do listy</a></li>
-  <li><a href="#"> - </a></li>
-  <li><a href="#"> - </a></li>
-  <li><a href="#"> - </a></li>
+  <li><a href="/blog/list/">LISTA</a></li>
   </ul>
 {% endblock %}

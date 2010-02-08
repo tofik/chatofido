@@ -8,7 +8,8 @@ def list(request):
     all_posts = Post.objects.all().order_by('-created')
     all_authors = Post.objects.values('author').distinct() 
 
-    return render_to_response('blog/list.html', {'posts': all_posts, 'authors': all_authors})
+    return render_to_response('blog/list.html', {'posts': all_posts, 
+                                                 'authors': all_authors})
 
 def new(request):
     if request.method == 'POST':

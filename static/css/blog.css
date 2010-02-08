@@ -1,42 +1,72 @@
 body {
     color: black;
     font-family: courier;
+    background-color: #ccddbb;
 }
 
 ul {
     list-style: none;
 }
 
-#header {
-    float: left;
-    clear: right;
-    border: 1px solid white;
-    width: 250;
-    height: 50;
+fieldset {
+	width: 100%; 
+	background-color: black; 
+	}
+
+.field_value input {
+    width: 400px;
 }
+
+.field_value textarea {
+    width: 550px;
+}
+
 
 #buffer_left {
     width: 50%;
     float: left;
     clear: left;
-    border: 1px dashed white;
+#    border: 1px dotted black;
     margin-left: 10px;
 }
 
-#buffer_left li {
-    border-bottom: 1px solid blue;
-    border-left: 1px solid blue;
+#buffer_left_header {
+#    border: 1px dotted black;
+    width: 250;
+    height: 50;
+}
+
+#buffer_left_upper_menu a{
+    text-decoration: none;
+    background-color: #f8c301;
+}
+
+#buffer_left_main_window {
+    background-color: black;
+    color: white;
+    border: 2px solid #f8c301;
+    height: 80%;
+    overflow: auto;
+}
+
+#buffer_left_main_window li {
+    padding-bottom: 40;
+    padding-left: 10;
+    border-bottom: 2px solid grey;
+    border-left: 2px solid grey;
 }
 
 #buffer_center {
-    width: 15%;
+    width: 205px;
     float: left;
-    border: 1px dashed orange;
+#    border: 1px dotted black;
     margin-left: 10px;
 }
 
 #menu {
-    border: 1px dotted white;
+    font-size: 30px;
+    font-weight: bold;
+#    border: 1px dotted black;
 }
 
 #menu ul {
@@ -45,16 +75,21 @@ ul {
     margin: 0 0 0 0;
 }
 
+#menu li {
+    margin-top: 10;
+}
+
 #menu a {
+    border: 3px solid black;
     text-decoration: none;
-    color: maroon;
+    text-align: center;
+    color: black;
     display: block;
-    background-color: lightgrey;
+    background-color: #f8c301;
 }
 
 #menu a:hover {
-    background-color: maroon;
-    color: lightgrey;
+    border: 3px solid white;
 }
 
 
