@@ -22,3 +22,8 @@ def new(request):
         form = NewPostForm()
         
     return render_to_response('blog/new.html', {'form': form})
+
+def blog(request, name):
+    blog = Blog.objects.get(name = name)
+
+    return render_to_response({'blog': blog})
