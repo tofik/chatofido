@@ -6,7 +6,13 @@
 
 
 {% block buffer_left_main_window %}
+
+<h1>{{ blog.name }}</h1>
+
 {% for post in blog.posts %}
+
+
+
 <ul>
   <div style="font-size: 30; font-weight: bold;">{{ post.title }}</div>
   <div style="font-style: italic; color:grey;">nadano {{ post.created }}</div>

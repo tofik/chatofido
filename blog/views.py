@@ -1,4 +1,4 @@
-from blog.models import Post
+from blog.models import Post, Blog
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from blog.forms import NewPostForm
 
@@ -11,11 +11,14 @@ def list(request):
     return render_to_response('blog/list.html', {'posts': all_posts, 
                                                  'authors': all_authors})
 
-def new(request):
+def new(request, name):
+    blog = Blog.objects.get(name = name)
     if request.method == 'POST':
         form = NewPostForm(request.POST)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.blog = blog
+            post.save()
             return HttpResponseRedirect('/blog/list/')
 
     else:
@@ -26,4 +29,5 @@ def new(request):
 def blog(request, name):
     blog = Blog.objects.get(name = name)
 
-    return render_to_response({'blog': blog})
+    return render_to_response('blog/list.html', {'blog': blog},
+                              )
