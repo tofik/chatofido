@@ -12,8 +12,5 @@ class Post(models.Model):
     title = models.CharField(max_length=60)
     author = models.CharField(max_length=20)
 
-    # @models.permalink
-    # def get_absolute_urls(self):
-    #     return ('blog.views.details', [str(self.id)])
 
 
