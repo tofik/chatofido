@@ -12,7 +12,7 @@
 
   <fieldset>
     <p>
-      <label class="field_name">Tytuł posta:</label>
+      <label class="field_name">Tytuł posta dla {{blog.name}}:</label>
       <span class="field_value">{{ form.title }}</span>
     </p>
 
@@ -42,6 +42,6 @@
 
 {% block menu %}
 <ul>
-  <li><a href="/blog/list/">LISTA</a></li>
+  <li><a href="/blog/{{blog.name}}">lista wpisow</a></li>
   </ul>
 {% endblock %}

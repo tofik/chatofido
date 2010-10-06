@@ -24,7 +24,8 @@ def new(request, name):
     else:
         form = NewPostForm()
         
-    return render_to_response('blog/new.html', {'form': form})
+    return render_to_response('blog/new.html', {'form': form, 'blog': blog},
+                              )
 
 def blog(request, name):
     blog = Blog.objects.get(name = name)
