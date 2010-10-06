@@ -33,7 +33,7 @@ do tej pory posty dołączyli:
 {% for author in authors %}
 <ul>
   <li>{{ author.author }}</li>
- </ul>
+</ul>
 {% empty %}
 Jeszcze nikt nie raczył dodać żadnego posta
 {% endfor %}
@@ -41,7 +41,7 @@ Jeszcze nikt nie raczył dodać żadnego posta
 
 {% block menu %}
 <ul>
-  <li><a href="/blog/new/">DODAJ POST</a></li>
-  </ul>
+  <li><a href="/blog/{{blog.name}}/new/">+</a></li>
+</ul>
 {% endblock %}
 
