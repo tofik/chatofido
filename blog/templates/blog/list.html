@@ -9,9 +9,8 @@
 
 <h1>{{ blog.name }}</h1>
 
-{% for post in blog.posts %}
 
-
+{% for post in blog.post_set.all %}
 
 <ul>
   <div style="font-size: 30; font-weight: bold;">{{ post.title }}</div>
@@ -30,7 +29,7 @@ jak na razie, brak wpisów
 
 {% block detailed_data %}
 do tej pory posty dołączyli:
-{% for author in blog.authors %}
+{% for author in authors %}
 <ul>
   <li>{{ author.author }}</li>
 </ul>

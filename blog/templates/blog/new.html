@@ -7,15 +7,14 @@
 
 {% block buffer_left_main_window %}
 
-<form action="/blog/{{blog.name}}" method="POST">
-  
-
+<form action="/blog/{{ blog.name }}/new/" method="POST">
   <fieldset>
+    {{form.blog}} = {{ blog.name }}
     <p>
-      <label class="field_name">Tytuł posta dla {{blog.name}}:</label>
+      <label class="field_name">wybrana metoda {{ method }} Tytuł posta dla {{blog.name}}:</label>
       <span class="field_value">{{ form.title }}</span>
     </p>
-
+    
     <p>
       <label class="field_name">post właściwy:</label>
     </p>
@@ -28,14 +27,13 @@
       <span class="filed_value">{{ form.author }}</span>
     </p>
   </fieldset>
-
-
+  
   <fieldset>
     <div class="field_submit">
-      <input type="submit" name="submit_post" value="zatwierdź" />
+      <input type="submit" name="submit_post" value="Submit Post!" />
     </div>
   </fieldset>
-
+  
 </form>
 
 {% endblock %}
