@@ -2,56 +2,50 @@
   <head>
     <title> To jest blog cHani i Tomka </title>
     <link rel="stylesheet" type="text/css" href="/static/css/blog.css" /> 
-
   </head>
 
 
   <body>
 
-    <div id="buffer_left">
-      <div id="buffer_left_header">
-	{% block buffer_left_header %}
-	{% endblock %}
-      </div>
-      <div id="buffer_left_upper_menu">
-	<a href="/blog/chatofido" style="border-top:2px solid black;border-left:2px solid black;
-			   border-right:2px solid black;">cHaToFiDo</a>
-	<a href="/blog/chado" style="border-top:2px solid black;border-left:2px solid black;
-			   border-right:2px solid black;">cHa____Do</a>
-	<a href="/blog/tofi" style="border-top:2px solid black;border-left:2px solid black;
-			   border-right:2px solid black;">___ToFi__</a>
-      </div>
-
-      <div id="buffer_left_main_window">
-      {% block buffer_left_main_window %}
-      {% endblock %}
-      </div>
-    </div>
-
-    <div id="buffer_center">
+    <div id="buffer_A">
       <div id="menu">
 	{% block menu %}
 	{% endblock %}
 	<ul>
-	  <li><a href="#"><img src="/static/css/archiwum.jpg" height=100px border=0></a></li>
-	  <li><a href="#"><img src="/static/css/polka_xsiazek.jpg" height=100px border=0></a></li>
-	  <li><a href="#"><img src="/static/css/pudelko.jpg" height=100px border=0></a></li>
+	  <li><a href="#">archiwum</a></li>
+	  <li><a href="#">xsiążki</a></li>
+	  <li><a href="#">linki</a></li>
+	  ---
+	  blogi:
+	  <li><a href="/blog/chaniny">chaniny</a></li>
+	  <li><a href="/blog/tofikowy">tofikowy</a></li>
 	</ul>
       </div>
       {% block detailed_data %}
       {% endblock %}
-
     </div>
 
 
-    <div id="buffer_right">
+    <div id="buffer_B">
+      <div id="buffer_B_header">
+	{% block buffer_B_header %}
+	{% endblock %}
       </div>
 
+      <div id="buffer_B_main_window">
+      {% block buffer_B_main_window %}
+      {% endblock %}
+      </div>
+    </div>
 
+
+    <div id="buffer_C">
+    </div>
 
     <div id="logo_vertical">
-      </div>
-
+      logo bloga
+    </div>
+    
   </body>
 
 </html>

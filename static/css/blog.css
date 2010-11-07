@@ -1,7 +1,7 @@
 body {
     color: black;
     font-family: courier;
-    background-color: #ccddbb;
+    background-color: white;
 }
 
 ul {
@@ -22,26 +22,36 @@ fieldset {
 }
 
 
-#buffer_left {
+#buffer_A {
+    width: 110px;
+    float: left;
+#    border: 1px dotted black;
+    margin-left: 0px;
+    position: fixed;
+}
+
+#buffer_B {
     width: 70%;
     float: left;
-    clear: left;
+#    clear: left;
 #    border: 1px dotted black;
-    margin-left: 10px;
+    margin-left: 120px;
 }
 
-#buffer_left_header {
+#buffer_B_header {
 #    border: 1px dotted black;
-    width: 250;
-    height: 50;
+#    width: 250;
+    /* height: 50; */
+    /* font-size: 20; */
+    /* font-weight: bold; */
 }
 
-#buffer_left_upper_menu a{
+#buffer_B_upper_menu a{
     text-decoration: none;
     background-color: #f8c301;
 }
 
-#buffer_left_main_window {
+#buffer_B_main_window {
     background-color: black;
     color: white;
     border: 2px solid #f8c301;
@@ -49,24 +59,17 @@ fieldset {
     overflow: auto;
 }
 
-#buffer_left_main_window li {
+#buffer_B_main_window li {
     padding-bottom: 40;
     padding-left: 10;
     border-bottom: 2px solid grey;
     border-left: 2px solid grey;
 }
 
-#buffer_center {
-    width: 110px;
-    float: left;
-#    border: 1px dotted black;
-    margin-left: 80px;
-}
-
 #menu {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
-    border: 1px dotted black;
+#    border: 1px dotted black;
 }
 
 #menu ul {
@@ -93,7 +96,7 @@ fieldset {
 }
 
 
-#buffer_right {
+#buffer_C {
 }
 
 

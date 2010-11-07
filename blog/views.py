@@ -1,6 +1,8 @@
 from blog.models import Post, Blog
-from django.shortcuts import render_to_response, HttpResponseRedirect, HttpResponse
+from django.shortcuts import render_to_response, HttpResponseRedirect
 from blog.forms import NewPostForm
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
 
 # Create your views here.
 
@@ -21,23 +23,23 @@ def new(request, name):
             post.blog = blog
             post.save()
         else:
-            return HttpResponse("form invalid or incomplete!!")
-            
-#            return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name,)))
+            return HttpResponse("form is invalid or incomplete!!")
         
     else:
-        form = NewPostForm()    
+        form = NewPostForm({'blog': blog})    
+        return render_to_response('blog/new.html', {'form': form,
+                                                    'blog': blog,
+                                                    },)
 
-    return render_to_response('blog/new.html', {'form': form,
-                                                'blog': blog,
-                                                },
-                              )
-
+    return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
+    
 def blog(request, name):
     blog = Blog.objects.get(name = name)
     all_authors = Post.objects.values('author').distinct()
+    all_posts = blog.post_set.all().order_by('-created')
 
     return render_to_response('blog/list.html', {'blog': blog,
-                                                 'authors': all_authors
+                                                 'authors': all_authors,
+                                                 'posts': all_posts,
                                                  },
                               )

@@ -1,7 +1,6 @@
 {% extends "blog_base.html" %}
 
 {% block buffer_left_header %}
-<img src="/static/css/banner_dodaj_post.jpg">
 {% endblock %}
 
 
@@ -9,9 +8,12 @@
 
 <form action="/blog/{{ blog.name }}/new/" method="POST">
   <fieldset>
-    {{form.blog}} = {{ blog.name }}
     <p>
-      <label class="field_name">wybrana metoda {{ method }} Tytuł posta dla {{blog.name}}:</label>
+      <span style ="display:none">{{ form.blog }}</span>
+    </p>
+
+    <p>
+      <label class="field_name">Tytuł posta:</label>
       <span class="field_value">{{ form.title }}</span>
     </p>
     
@@ -26,6 +28,7 @@
       <label class="field_name">Ktoś Ty?:</label>
       <span class="filed_value">{{ form.author }}</span>
     </p>
+
   </fieldset>
   
   <fieldset>
@@ -39,6 +42,8 @@
 {% endblock %}
 
 {% block menu %}
+
+{{ blog.name }} PUNK?! widzenia
 <ul>
   <li><a href="/blog/{{blog.name}}">lista wpisow</a></li>
   </ul>

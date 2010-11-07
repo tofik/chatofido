@@ -1,46 +1,43 @@
 {% extends "blog_base.html" %}
 
-{% block buffer_left_header %}
-<img src="/static/css/banner_tresc.jpg">
+{% block buffer_B_header %}
 {% endblock %}
+ 
 
+{% block buffer_B_main_window %}
 
-{% block buffer_left_main_window %}
-
-<h1>{{ blog.name }}</h1>
-
-
-{% for post in blog.post_set.all %}
-
-<ul>
-  <div style="font-size: 30; font-weight: bold;">{{ post.title }}</div>
-  <div style="font-style: italic; color:grey;">nadano {{ post.created }}</div>
-  <li> {{ post.content }}
-    <div style="float: right; font-size:10px; padding-top: 5; padding-bottom: 5;">
-      autor: {{ post.author }}<br> <a href="#" style="text-decoration: none; 
-						      color: white;"> dodaj komentarz</a>
-    </div>
-  </li>
-</ul>
-{% empty %}
-jak na razie, brak wpisów
-{% endfor %}
+   {% for post in posts %}
+      <ul>
+	tytuł posta: {{ post.title }}
+	<li> {{ post.content }}
+	  <div style="float: right; font-size:10px; padding-top: 5; padding-bottom: 5;">
+	    autor: {{ post.author }}<br> <a href="#" style="text-decoration: none; 
+							    color: white;"> {{ post.created|date:"D d M Y" }}</a>
+	  </div>
+	</li>
+      </ul>
+   {% empty %}
+      jak na razie, brak wpisów
+   {% endfor %}
+      
 {% endblock %}
-
+      
 {% block detailed_data %}
-do tej pory posty dołączyli:
-{% for author in authors %}
-<ul>
-  <li>{{ author.author }}</li>
-</ul>
-{% empty %}
-Jeszcze nikt nie raczył dodać żadnego posta
-{% endfor %}
+   {% for author in authors %}
+      <ul>
+	<!-- <li>{{ author.author }}</li> -->
+      </ul>
+   {% empty %}
+      Jeszcze nikt nie raczył dodać żadnego posta
+   {% endfor %}
 {% endblock %}
-
+      
 {% block menu %}
-<ul>
-  <li><a href="/blog/{{blog.name}}/new/">dodaj wpis</a></li>
-</ul>
+   {{ blog.name }} PUNK?! widzenia
+
+   <ul>
+     <li><a href="/blog/{{blog.name}}/new/">dodaj wpis</a></li>
+   </ul>
+   
 {% endblock %}
 
