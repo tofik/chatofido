@@ -36,10 +36,45 @@
       {% block buffer_B_main_window %}
       {% endblock %}
       </div>
-    </div>
+     </div>
 
 
     <div id="buffer_C">
+      <p>
+	Wszyscy autorzy
+	{% for author in authors %}
+           <li style = "list-style:none; margin-left:10px;"> {{ author.author }} </li> 
+	{% empty %}
+           no authors
+	{% endfor %}
+      </p>
+
+      <p>
+	Autorzy tego bloga
+	{% for author in blog_authors %}
+           <li style = "list-style:none"> {{ author.author }} </li> 
+	{% empty %}
+           no authors
+	{% endfor %}
+      </p>
+
+      <p>
+	dzisiaj dodano:
+	{% for date in created_today %}
+           <li style = "list-style:none;font-size:10px;"> {{ date.created }} </li>
+	{% empty %}
+      	   no posts
+	{% endfor %}
+      </p>
+
+      <p>
+	dodano w tym miesiącu:
+	{% for date in created_this_month %}
+           <li style = "list-style:none;font-size:10px;"> {{ date.created }} </li>
+	{% empty %}
+      	   no posts
+	{% endfor %}
+      </p>
     </div>
 
     <div id="logo_vertical">
