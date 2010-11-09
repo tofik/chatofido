@@ -7,8 +7,8 @@
 
   <body>
 
-    <div id="buffer_A">
-      <div id="menu">
+    <div style = "position: fixed; width: 110px; float: left;">
+      <div id="menu" style = "">
 	{% block menu %}
 	{% endblock %}
 	<ul>
@@ -25,61 +25,20 @@
       {% endblock %}
     </div>
 
+    <div style = "margin-left: 120px;">
+    {% block buffer_B_header %}
+    {% endblock %}
 
-    <div id="buffer_B">
-      <div id="buffer_B_header">
-	{% block buffer_B_header %}
-	{% endblock %}
-      </div>
-
-      <div id="buffer_B_main_window">
-      {% block buffer_B_main_window %}
-      {% endblock %}
-      </div>
-     </div>
-
+    {% block buffer_B_main_window %}
+    {% endblock %}
+    </div>
 
     <div id="buffer_C">
       <p>
-	Wszyscy autorzy
-	{% for author in authors %}
-           <li style = "list-style:none; margin-left:10px;"> {{ author.author }} </li> 
-	{% empty %}
-           no authors
-	{% endfor %}
-      </p>
 
-      <p>
-	Autorzy tego bloga
-	{% for author in blog_authors %}
-           <li style = "list-style:none"> {{ author.author }} </li> 
-	{% empty %}
-           no authors
-	{% endfor %}
-      </p>
-
-      <p>
-	dzisiaj dodano:
-	{% for date in created_today %}
-           <li style = "list-style:none;font-size:10px;"> {{ date.created }} </li>
-	{% empty %}
-      	   no posts
-	{% endfor %}
-      </p>
-
-      <p>
-	dodano w tym miesiącu:
-	{% for date in created_this_month %}
-           <li style = "list-style:none;font-size:10px;"> {{ date.created }} </li>
-	{% empty %}
-      	   no posts
-	{% endfor %}
       </p>
     </div>
 
-    <div id="logo_vertical">
-      logo bloga
-    </div>
     
   </body>
 

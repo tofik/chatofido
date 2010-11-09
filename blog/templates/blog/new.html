@@ -8,47 +8,54 @@
 
    {{ blog.name }} PUNK?! widzenia
    <ul>
-     <li><a href="/blog/{{blog.name}}">lista wpisow</a></li>
+     <li><a href="/blog/{{blog.name}}">wpisy</a></li>
    </ul>
 
 {% endblock %}
 
 {% block buffer_B_main_window %}
-
-<form action="/blog/{{ blog.name }}/new/" method="POST">
-  <fieldset>
-    <p>
-      <span style ="display:none">{{ form.blog }}</span>
-    </p>
-
-    <p>
-      <label class="field_name">Tytuł posta:</label>
-      <span class="field_value">{{ form.title }}</span>
-    </p>
+   <div>
+     <div style = "width: 30px; position: absolute;">
+       <h4>autorzy bloga </h4>
+       {% for author in blog_authors%}
+       {{ author.author}}</br>
+       {% empty %}
+       {% endfor %}
+     </div>
     
-    <p>
-      <label class="field_name">post właściwy:</label>
-    </p>
-
-    <p>
-      <span class="field_value">{{ form.content }}</span>
-    </p>
-    
-    <p>
-      <label class="field_name">Ktoś Ty?:</label>
-      <span class="filed_value">{{ form.author }}</span>
-    </p>
-
-  </fieldset>
-  
-  <fieldset>
-    <div class="field_submit">
-      <input type="submit" name="submit_post" value="Submit Post!" />
-    </div>
-  </fieldset>
-  
-</form>
-
+     <div style = "margin-left: 60px;">
+       <form action="/blog/{{ blog.name }}/new/" method="POST">
+	 <fieldset style = "width: 0;">
+	   <p>
+	     <span style ="display:none">{{ form.blog }}</span>
+	   </p>
+	   
+	   <p>
+	     <label class="field_name">Tytuł posta:</label>
+	     <span  class="field_value">{{ form.title }}</span>
+	   </p>
+	   
+	   <p>
+	     <label class="field_name">post właściwy:</label>
+	   </p>
+	   
+	   <p>
+	     <span class="field_value">{{ form.content }}</span>
+	   </p>
+	   
+	   <p>
+	     <label class="field_name">Ktoś Ty?:</label>
+	     <span class="filed_value">{{ form.author }}</span>
+	   </p>
+	   
+	   <div class="field_submit">
+	     <input type="submit" name="submit_post" value="Submit Post!" />
+	   </div>
+	 </fieldset>
+	 
+       </form>
+     </div>
+   </div>
 {% endblock %}
 
 

@@ -1,37 +1,6 @@
 {% extends "blog_base.html" %}
 
-{% block buffer_B_header %}
-{% endblock %}
- 
 
-{% block buffer_B_main_window %}
-
-   {% for post in posts %}
-      <ul>
-	tytuł posta: {{ post.title }}
-	<li> {{ post.content }}
-	  <div style="float: right; font-size:10px; padding-top: 5; padding-bottom: 5;">
-	    autor: {{ post.author }}<br> <a href="#" style="text-decoration: none; 
-							    color: white;"> {{ post.created|date:"D d M Y" }}</a>
-	  </div>
-	</li>
-      </ul>
-   {% empty %}
-      jak na razie, brak wpisów
-   {% endfor %}
-      
-{% endblock %}
-      
-{% block detailed_data %}
-   {% for author in authors %}
-      <ul>
-	<!-- <li>{{ author.author }}</li> -->
-      </ul>
-   {% empty %}
-      Jeszcze nikt nie raczył dodać żadnego posta
-   {% endfor %}
-{% endblock %}
-      
 {% block menu %}
    {{ blog.name }} PUNK?! widzenia
 
@@ -40,4 +9,41 @@
    </ul>
    
 {% endblock %}
+
+
+{% block buffer_B_header %}
+{% endblock %}
+ 
+
+{% block buffer_B_main_window %}
+   <div style = "">
+     <div style = "width: 30px; position: absolute;">
+       <h4>autorzy bloga </h4>
+       {% for author in blog_authors%}
+       {{ author.author}}</br>
+       {% empty %}
+       {% endfor %}
+     </div>
+     
+     
+     <div style = "margin-left: 30px; width: 70%;">
+       {% for post in posts %}
+       <ul>
+	 <h1>{{ post.title }}</h1>
+	 <li> {{ post.content }}
+	   <div style ="float: right; font-size:12px; padding-top: 5; padding-bottom: 5;">
+	     autor: {{ post.author }}<br> 
+	     {{ post.created|date:"D d M Y" }}
+	     </a>
+	   </div>
+	 </li>
+       </ul>
+       {% empty %}
+       {% endfor %}
+     </div>
+   </div>
+      
+{% endblock %}
+      
+      
 

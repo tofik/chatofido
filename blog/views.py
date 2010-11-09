@@ -27,11 +27,11 @@ def new(request, name):
             return HttpResponse("form is invalid or incomplete!!")
         
     else:
-        all_authors = Post.objects.values('author').distinct()
+        blog_authors = Post.objects.values('author').distinct()
         form = NewPostForm({'blog': blog})    
         return render_to_response('blog/new.html', {'form': form,
                                                     'blog': blog,
-                                                    'author': all_authors,
+                                                    'blog_authors': blog_authors,
                                                     },)
 
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
@@ -39,14 +39,13 @@ def new(request, name):
 def blog(request, name):
     blog = Blog.objects.get(name = name)
     all_authors = Post.objects.values('author').distinct()
-    authors_for_blog = blog.post_set.values('author').distinct()
+    blog_authors = blog.post_set.values('author').distinct()
     created_today = blog.post_set.filter(created__startswith = datetime.date.today())
     created_month = blog.post_set.filter(created__month = datetime.date.today().month)
     all_posts = blog.post_set.all().order_by('-created')
 
     return render_to_response('blog/list.html', {'blog': blog,
-                                                 'authors': all_authors,
-                                                 'blog_authors': authors_for_blog,
+                                                 'blog_authors': blog_authors,
                                                  'posts': all_posts,
                                                  'created_today': created_today,
                                                  'created_this_month': created_month,
