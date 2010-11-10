@@ -1,44 +1,75 @@
 <html>
   <head>
     <title> To jest blog cHani i Tomka </title>
-    <link rel="stylesheet" type="text/css" href="/static/css/blog.css" /> 
+    <link rel="stylesheet" type="text/css" href="/static/css/blog_grid.css" /> 
   </head>
 
 
   <body>
+    <div class = "container_12" style = "border: 2px solid black;">
 
-    <div style = "position: fixed; width: 110px; float: left;">
-      <div id="menu" style = "">
-	{% block menu %}
+      <div class = "grid_1"> 
+	{% block blog_title%} 
 	{% endblock %}
-	<ul>
-	  <li><a href="#">archiwum</a></li>
-	  <li><a href="#">xsiążki</a></li>
-	  <li><a href="#">linki</a></li>
+      </div>
+      <div class = "grid_11"> </div>
+      
+      <div class = "grid_12 spacer"></div>
+
+      <div class = "clear"></div>
+
+      <div class = "grid_2">
+	<div class = "grid_6 alfa">
+	  {% block menu %}
+	  {% endblock %}
+	</div>
+	<div class = "grid_6 omega">
+	  <a href="#">archiwum</a>
+	</div>
+	
+	<div class = "clear"></div>
+	<div class = "grid_12">---</div>
+
+	<div class = "grid_6  alfa">
+	  <a href="#">xsiążki</a>
+	</div>
+	<div class = "grid_6 omega">
+	  <a href="#">linki</a>
+	</div>
+	
+	<div class = "grid_2">
 	  ---
 	  blogi:
-	  <li><a href="/blog/chaniny">chaniny</a></li>
-	  <li><a href="/blog/tofikowy">tofikowy</a></li>
-	</ul>
+	  <a href="/blog/chaniny">chaniny</a>
+	  <a href="/blog/tofikowy">tofikowy</a>
+	</div>
+	
       </div>
-      {% block detailed_data %}
-      {% endblock %}
+      
+      <div class = "grid_8" style = "border: 2px solid black; height: 70%; overflow: auto;">
+	{% block buffer_B_main_window %}
+	{% endblock %}
+      </div>
+
+      <div class = "grid_1">
+	{% block authors%}
+	{% endblock %}
+      </div>
+
+      <div class = "clear"></div>
+
+      <div class = "grid_6 alpha">
+      </div>
+
+      <div class = "grid_6 omega" style = "border: 2px solid black; float:right;">
+	<img src = "/static/css/archiwum.jpg" width = "179px"
+	<img src = "/static/css/pudelko.jpg" width = "179px">
+	<img src = "/static/css/polka_xsiazek.jpg" width = "179px">
+      </div>
+
+      <div class = "clear"></div>
+
     </div>
-
-    <div style = "margin-left: 120px;">
-    {% block buffer_B_header %}
-    {% endblock %}
-
-    {% block buffer_B_main_window %}
-    {% endblock %}
-    </div>
-
-    <div id="buffer_C">
-      <p>
-
-      </p>
-    </div>
-
     
   </body>
 
