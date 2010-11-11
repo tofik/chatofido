@@ -1,76 +1,102 @@
 <html>
   <head>
     <title> To jest blog cHani i Tomka </title>
-    <link rel="stylesheet" type="text/css" href="/static/css/blog_grid.css" /> 
+    <link rel="stylesheet" type="text/css" href="/static/css/blog_temp.css" /> 
   </head>
 
 
   <body>
-    <div class = "container_12" style = "border: 2px solid black;">
+    <!-- wrapper starts -->
+    <div id = "wrapper">
+      <!-- container starts-->
+      <div id = "container">
 
-      <div class = "grid_1"> 
-	{% block blog_title%} 
-	{% endblock %}
-      </div>
-      <div class = "grid_11"> </div>
-      
-      <div class = "grid_12 spacer"></div>
 
-      <div class = "clear"></div>
 
-      <div class = "grid_2">
-	<div class = "grid_6 alfa">
-	  {% block menu %}
+	<!-- ltcontent starts -->
+	<div id = "ltcontent">	
+	  <!-- hdlogo starts -->
+	  <div id = "hdlogo">
+	    <img src = "/static/css/archiwum.jpg" width = "300px">
+	    <img src = "/static/css/pudelko.jpg" width = "300px">
+	    <img src = "/static/css/polka_xsiazek.jpg" width = "300px">
+	  </div>
+	  <!-- hdlogo ends -->
+
+	  <!-- mostpop starts -->
+	  <div id = "mostpop">
+	    
+	    <!-- lthead starts -->
+	    <div class = "lthead">
+	      <span>Autorzy tego bloga</span>
+	    </div>
+	    <!-- lthead ends-->
+	    
+	    <!-- ltposts starts -->
+	    <div class = "ltposts">
+	      <ul>
+	      	{% block authors%}	
+		{% endblock %}
+	      </ul>
+	    </div>
+	    <!-- ltposts ends -->
+
+	  </div>
+	  <!-- mostpop ends -->
+	  
+	</div>
+	<!-- ltcontent ends -->
+
+
+
+
+	<!-- rtcontent starts -->
+	<div id = "rtcontent">
+	  
+	  <div class = "publish"> Pyblished by ... </div>
+	  
+	  <!-- head starts -->
+	  <div class = "head">
+	    {% block blog_title%} 
+	    {% endblock %}
+	  </div>
+	  <!-- head ends -->
+
+	  <div class = "tagln"></div>
+	  
+	  <!-- menulinks starts -->
+	  <div id = "menulinks">
+	    <ul>
+	      <li>{% block menu %}{% endblock %}</li>
+	      <li><a href="#">archiwum</a></li>
+	      <li><a href="#">xsiążki</a></li>
+	      <li><a href="#">linki</a></li>
+	      <li><a href="/blog/chaniny">chaniny</a></li>
+	      <li><a href="/blog/tofikowy">tofikowy</a></li>
+	    </ul>
+	  </div>
+	  <!-- menulinks ends -->
+
+	  <div class = "clear"></div>
+	  
+	  {% block buffer_B_main_window %}
 	  {% endblock %}
+	  
+	  <div class = "rtboxbg"></div>
+	  
 	</div>
-	<div class = "grid_6 omega">
-	  <a href="#">archiwum</a>
-	</div>
-	
+	<!-- rtcontent sends -->
+
+
+
 	<div class = "clear"></div>
-	<div class = "grid_12">---</div>
-
-	<div class = "grid_6  alfa">
-	  <a href="#">xsiążki</a>
-	</div>
-	<div class = "grid_6 omega">
-	  <a href="#">linki</a>
-	</div>
 	
-	<div class = "grid_2">
-	  ---
-	  blogi:
-	  <a href="/blog/chaniny">chaniny</a>
-	  <a href="/blog/tofikowy">tofikowy</a>
-	</div>
+	<div id = "footer"></div>
 	
       </div>
-      
-      <div class = "grid_8" style = "border: 2px solid black; height: 70%; overflow: auto;">
-	{% block buffer_B_main_window %}
-	{% endblock %}
-      </div>
-
-      <div class = "grid_1">
-	{% block authors%}
-	{% endblock %}
-      </div>
-
-      <div class = "clear"></div>
-
-      <div class = "grid_6 alpha">
-      </div>
-
-      <div class = "grid_6 omega" style = "border: 2px solid black; float:right;">
-	<img src = "/static/css/archiwum.jpg" width = "179px"
-	<img src = "/static/css/pudelko.jpg" width = "179px">
-	<img src = "/static/css/polka_xsiazek.jpg" width = "179px">
-      </div>
-
-      <div class = "clear"></div>
-
+      <!-- container end -->
     </div>
-    
+    <!-- wrapper ends-->
   </body>
 
 </html>

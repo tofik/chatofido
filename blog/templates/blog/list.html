@@ -12,9 +12,8 @@
 
 {% block authors%}
 
-<h4>autorzy bloga </h4>
 {% for author in blog_authors%}
-{{ author.author}}</br>
+<li>{{ author.author}}</li>
 {% empty %}
 {% endfor %}
 
@@ -24,13 +23,33 @@
 {% block buffer_B_main_window %}
      
 {% for post in posts %}
-<ul>
-  <h3>{{ post.title }}</h3>
-  <li> {{ post.content }}
-      autor: {{ post.author }}<br> 
-      {{ post.created|date:"D d M Y" }}
-  </li>
-</ul>
+<div class = "document">
+
+  <div></div>
+  
+  <div class = "dochead">
+    <span class = "dhead">{{ post.title}}</span>
+  </div>
+
+  <div>
+    <span class = "post">posted by {{ post.author }} | {{ post.created|date:"D d M Y" }} </span>
+  </div>
+
+  <div class = "dcontent">
+    {{ post.content }}
+  </div>
+
+  <div class = "bubble" align = "right">
+    <span>205 komentarzy</span>
+  </div>
+  
+</div>
+
+<div class = "rtboxbg"></div>
+<div class = "gap"></div>
+
+
+
 {% empty %}
 {% endfor %}
 
