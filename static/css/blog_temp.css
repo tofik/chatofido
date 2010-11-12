@@ -62,14 +62,15 @@ img{border:0;}
 	margin-top:15px;
 	height:40px;
 	float:left;
-	width:550px;
+	width:100%;
 	margin-left:0px;
 }
 
 #menulinks li{
 	display:inline;	
 	float:left;
-	width:87px;
+	/* width:87px; */
+	width: 110px;
 	margin-right:60px;
 	text-align:center;
 	background-color:#FFF;
@@ -189,7 +190,7 @@ img{border:0;}
 	background-color:#d5d1bf;
 	margin-left:24px;
 	margin-top: 15px;
-	height:240px;
+	height:250px;
 }
 
 /*left content box*/

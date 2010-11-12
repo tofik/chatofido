@@ -6,18 +6,18 @@
 {% endblock %}
 
 {% block menu %}
-<a href="/blog/{{blog.name}}/new/">dodaj wpis</a>
+<a href="/blog/{{blog.name}}/new/">wpis</a>
 {% endblock %}
 
 
-{% block authors%}
-
-{% for author in blog_authors%}
-<li>{{ author.author}}</li>
-{% empty %}
+{% block switchblogs %} 
+{% for blog_ in blogs %}
+{% if blog_.name == blog.name  %}
+{% else %}
+<li><a href = "{{ blog_.name}}">{{blog_.name}}</a></li>  
+{% endif %}
 {% endfor %}
-
-{% endblock  %}
+{% endblock%}
 
 
 {% block buffer_B_main_window %}

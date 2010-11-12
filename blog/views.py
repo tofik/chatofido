@@ -38,17 +38,16 @@ def new(request, name):
     
 def blog(request, name):
     blog = Blog.objects.get(name = name)
-    all_authors = Post.objects.values('author').distinct()
+    all_blogs = Blog.objects.values('name').distinct()
     blog_authors = blog.post_set.values('author').distinct()
-    created_today = blog.post_set.filter(created__startswith = datetime.date.today())
-    created_month = blog.post_set.filter(created__month = datetime.date.today().month)
+    all_authors = Post.objects.values('author').distinct()[0:2]
     all_posts = blog.post_set.all().order_by('-created')
 
     return render_to_response('blog/list.html', {'blog': blog,
+                                                 'blogs': all_blogs,
                                                  'blog_authors': blog_authors,
+                                                 'all_authors': all_authors,
                                                  'posts': all_posts,
-                                                 'created_today': created_today,
-                                                 'created_this_month': created_month,
                                                  'today': datetime.date.today().month,
                                                  },
                               )

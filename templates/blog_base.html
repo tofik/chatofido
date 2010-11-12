@@ -16,30 +16,64 @@
 	<!-- ltcontent starts -->
 	<div id = "ltcontent">	
 	  <!-- hdlogo starts -->
-	  <div id = "hdlogo">
+	  <div id = "hdlogo" align = "center">
 	    <img src = "/static/css/archiwum.jpg" width = "300px">
 	    <img src = "/static/css/pudelko.jpg" width = "300px">
 	    <img src = "/static/css/polka_xsiazek.jpg" width = "300px">
 	  </div>
 	  <!-- hdlogo ends -->
 
+	  <!-- about starts -->
+	  <div id = "about">
+	    <div class = "lthead" align = "center">
+	      <span class = "tphead">O blogu...</span>
+	    </div>
+
+	    <div class = "ltdetail">
+	      some crap .....some crap .....some crap .....some crap .....
+	      some crap .....some crap .....some crap .....some crap .....
+	    </div>
+	    <div class = "link">
+	      pocztex
+	    </div>
+	  </div>
+	  <!-- about ends -->
+
+	  <div class = "ltgap"></div>
+
 	  <!-- mostpop starts -->
 	  <div id = "mostpop">
-	    
-	    <!-- lthead starts -->
-	    <div class = "lthead">
-	      <span>Autorzy tego bloga</span>
+	    <div class = "lthead" align = "center">
+	      <span>Autorzy bloga</span>
 	    </div>
-	    <!-- lthead ends-->
 	    
-	    <!-- ltposts starts -->
-	    <div class = "ltposts">
-	      <ul>
-	      	{% block authors%}	
-		{% endblock %}
+	    <!-- overflow starts-->
+	    <div style = "overflow: auto; height: 12em;">
+	      <!-- ltposts starts -->
+	      <div class = "ltposts">
+		<ul>
+		  {% for author in blog_authors%}
+		  <li>{{ author.author|wordwrap:8 }}</li>
+		  {% empty %}
+		  {% endfor %}
+		</ul>
+	      </div>
+	      <!-- ltposts ends -->
+	      
+	      <!-- rtposts starts -->
+	      <div class = "rtposts">
+		<ul>
+		  {% for author_ in all_authors %}
+		  <li>{{ author_.author|wordwrap:8 }}</li>
+		  {% empty %}
+		  {% endfor %}
 	      </ul>
+	      </div>
+	      <!-- rtposts ends -->
 	    </div>
-	    <!-- ltposts ends -->
+	    <!-- overflow ends -->
+	    
+	    <div class = "clear"></div>
 
 	  </div>
 	  <!-- mostpop ends -->
@@ -71,8 +105,7 @@
 	      <li><a href="#">archiwum</a></li>
 	      <li><a href="#">xsiążki</a></li>
 	      <li><a href="#">linki</a></li>
-	      <li><a href="/blog/chaniny">chaniny</a></li>
-	      <li><a href="/blog/tofikowy">tofikowy</a></li>
+	      {% block switchblogs %}{% endblock %}
 	    </ul>
 	  </div>
 	  <!-- menulinks ends -->
