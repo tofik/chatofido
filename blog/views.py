@@ -40,7 +40,7 @@ def blog(request, name):
     blog = Blog.objects.get(name = name)
     all_blogs = Blog.objects.values('name').distinct()
     blog_authors = blog.post_set.values('author').distinct()
-    all_authors = Post.objects.values('author').distinct()[0:2]
+    all_authors = Post.objects.values('author').distinct()
     all_posts = blog.post_set.all().order_by('-created')
 
     return render_to_response('blog/list.html', {'blog': blog,
