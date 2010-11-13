@@ -1,3 +1,6 @@
+#!/usr/local/bin/python
+# -*- coding: latin-1 -*-
+
 from blog.models import Post, Blog
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from blog.forms import NewPostForm
@@ -24,7 +27,7 @@ def new(request, name):
             post.blog = blog
             post.save()
         else:
-            return HttpResponse("form is invalid or incomplete!!")
+            return HttpResponse("Niepoprawnie wypełniony formularz.")
         
     else:
         blog_authors = Post.objects.values('author').distinct()
@@ -36,7 +39,7 @@ def new(request, name):
 
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
     
-def blog(request, name):
+def blog(request, name = "chaniny"):
     blog = Blog.objects.get(name = name)
     all_blogs = Blog.objects.values('name').distinct()
     blog_authors = blog.post_set.values('author').distinct()

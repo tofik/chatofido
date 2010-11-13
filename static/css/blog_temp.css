@@ -205,6 +205,10 @@ img{border:0;}
 	margin-left:15px;
 }
 
+#hdlogo a:hover img{
+    border-right: 5px solid #689e18;
+}
+
 .tphead{
 	margin-left:-15px;	
 }
@@ -425,4 +429,13 @@ img{border:0;}
 
 .textbox{
 	width:190px; border:none; padding:2px; color:#444;	
+}
+
+.field_value textarea {
+    width: 600px;
+    height: 20em;
+}
+
+.field_value input {
+    width: 500px;
 }

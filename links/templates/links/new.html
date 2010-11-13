@@ -1,0 +1,44 @@
+{% extends "blog_base.html" %}
+
+{% block buffer_B_main_window %}
+
+<form action="/links/{{ owner.name }}/new/" method="POST">
+  <fieldset>
+    <p>
+      <span style="display:none">{{ form.owner }}</span>
+    </p>
+
+    <p>
+      <span class="field_name">Opisz link</span>
+    </p>
+    <p>
+      <span class="field_value">{{ form.name }}</span>
+    </p>
+    
+    <p>
+      <span class="field_name">Podaj link</span>
+    </p>
+    <p>
+      <span class="field_value">{{ form.content }}</span>
+    </p>
+
+    <p>
+      <span class="field_name">Czyj link?</span>
+    </p>
+    <p>
+      <span class="field_value">{{ form.author }}</span>
+    </p>
+  </fieldset>
+  
+  <fieldset>
+    <div class="field_submit">
+      <input type="submit" name="submit_post" value="Zatwierdź">
+    </div>
+  </fieldset>
+</form>
+
+
+{{ view_name }}
+
+
+{% endblock %}
