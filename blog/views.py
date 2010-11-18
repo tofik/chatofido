@@ -1,34 +1,37 @@
-#!/usr/local/bin/python
-# -*- coding: latin-1 -*-
-
-from blog.models import Post, Blog
+from blog.models import Post, Blog, FilePost
 from django.shortcuts import render_to_response, HttpResponseRedirect
-from blog.forms import NewPostForm
+from blog.forms import NewPostForm, NewFileForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 import datetime
 
-# Create your views here.
 
-# def list(request):
-#     all_posts = Post.objects.all().order_by('-created')
-#     all_authors = Post.objects.values('author').distinct() 
-
-#     return render_to_response('blog/list.html', {'posts': all_posts, 
-#                                                  'authors': all_authors})
-
+def upload_file(request, name):
+    blog = Blog.objects.get(name = name)
+    if request.method == 'POST':
+        form = NewFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            return HttpResponse(form)
+        else:
+            return HttpResponse("cos sie NIE udalo")
+    else:
+        form = NewFileForm({'blog': blog})
+        return render_to_response('blog/upload_file.html', {'form': form,
+                                                            'blog': blog})
+        
 
 def new(request, name):
     blog = Blog.objects.get(name = name)
     if request.method == 'POST':
-        form = NewPostForm(request.POST)
+        form = NewPostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.blog = blog
             post.save()
         else:
-            return HttpResponse("Niepoprawnie wypełniony formularz.")
-        
+#            return HttpResponse("Niepoprawnie wypelniony formularz.")
+            return HttpResponse(form)
+
     else:
         blog_authors = Post.objects.values('author').distinct()
         form = NewPostForm({'blog': blog})    
@@ -39,7 +42,7 @@ def new(request, name):
 
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
     
-def blog(request, name = "chaniny"):
+def blog(request, name = 'tofikowy'):
     blog = Blog.objects.get(name = name)
     all_blogs = Blog.objects.values('name').distinct()
     blog_authors = blog.post_set.values('author').distinct()

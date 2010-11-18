@@ -15,23 +15,13 @@
 
 {% block switchblogs%}{% endblock%}
 
-{% block authors %}
 
-<h4>autorzy bloga </h4>
-{% for author in blog_authors%}
-{{ author.author}}</br>
-{% empty %}
-{% endfor %}
+{% block buffer_B_main_window %}    
 
-{% endblock%}
-
-
-{% block buffer_B_main_window %}
-    
-<form action="/blog/{{ blog.name }}/new/" method="POST">
+<form action="/blog/{{ blog.name }}/upload_file/" method="POST">
   <fieldset>
     <p>
-      <span style ="display:none">{{ form.blog }}</span>
+      <span style = "display: none;">{{ form.blog }}</span>
     </p>
     
     <p>
@@ -40,20 +30,7 @@
     </p>
     
     <p>
-      <label class="field_name">post właściwy:</label>
-    </p>
-    
-    <p>
-      <span class="field_value">{{ form.content }}</span>
-    </p>
-
-    <p>
       <input type="file" name="filename"/>
-    </p>
-    
-    <p>
-      <label class="field_name">Ktoś Ty?:</label>
-      <span class="filed_value">{{ form.author }}</span>
     </p>
     
     <div class="field_submit">
