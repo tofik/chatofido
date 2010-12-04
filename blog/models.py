@@ -18,13 +18,6 @@ class Post(models.Model):
     title = models.CharField(max_length=60)
     author = models.CharField(max_length=20)
 
-class FilePost(models.Model):
-    def __unicode__(self):
-        return (self.title)
-    blog = models.ForeignKey(Blog)
-    title = models.CharField(max_length = 50)
-    filename = forms.FileField()
-
     # @models.permalink
     # def get_absolute_urls(self):
     #     return ('blog.views.details', [str(self.id)])

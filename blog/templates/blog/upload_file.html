@@ -18,7 +18,7 @@
 
 {% block buffer_B_main_window %}    
 
-<form action="/blog/{{ blog.name }}/upload_file/" method="POST">
+<form action="/blog/{{ blog.name }}/upload_file/" method="POST" enctype="multipart/form-data">{% csrf_token %}
   <fieldset>
     <p>
       <span style = "display: none;">{{ form.blog }}</span>

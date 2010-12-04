@@ -1,4 +1,4 @@
-from chatofido.blog.models import Post, Blog, FilePost
+from chatofido.blog.models import Post, Blog
 from django.contrib import admin
 
 class BlogAdmin(admin.ModelAdmin):
@@ -19,4 +19,3 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Blog, BlogAdmin)
-admin.site.register(FilePost)

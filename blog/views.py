@@ -1,36 +1,21 @@
-from blog.models import Post, Blog, FilePost
+from blog.models import Post, Blog
 from django.shortcuts import render_to_response, HttpResponseRedirect
-from blog.forms import NewPostForm, NewFileForm
+from blog.forms import NewPostForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 import datetime
 
 
-def upload_file(request, name):
-    blog = Blog.objects.get(name = name)
-    if request.method == 'POST':
-        form = NewFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            return HttpResponse(form)
-        else:
-            return HttpResponse("cos sie NIE udalo")
-    else:
-        form = NewFileForm({'blog': blog})
-        return render_to_response('blog/upload_file.html', {'form': form,
-                                                            'blog': blog})
-        
-
 def new(request, name):
     blog = Blog.objects.get(name = name)
     if request.method == 'POST':
-        form = NewPostForm(request.POST, request.FILES)
+        form = NewPostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.blog = blog
             post.save()
         else:
-#            return HttpResponse("Niepoprawnie wypelniony formularz.")
-            return HttpResponse(form)
+            return HttpResponse("Niepoprawnie wypelniony formularz.")
 
     else:
         blog_authors = Post.objects.values('author').distinct()
