@@ -1,12 +1,32 @@
-from blog.models import Post, Blog
+from blog.models import Post, Blog, Image
 from django.shortcuts import render_to_response, HttpResponseRedirect
-from blog.forms import NewPostForm
+from blog.forms import NewPostForm, NewImageForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 import datetime
 
 
-def new(request, name):
+def new_image(request, name):
+    blog = Blog.objects.get(name = name)
+    if request.method == 'POST':
+        form = NewImageForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.blog = blog
+            post.save()
+        else:
+            return HttpResponse("Do dupy formularz!")
+    else:
+        blog_authors = Image.objects.values('author').distinct()
+        form = NewImageForm({'blog': blog})    
+        return render_to_response('blog/new_image.html', {'form': form,
+                                                    'blog': blog,
+                                                    'blog_authors': blog_authors,
+                                                    },)
+    return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
+        
+
+def new_post(request, name):
     blog = Blog.objects.get(name = name)
     if request.method == 'POST':
         form = NewPostForm(request.POST)
@@ -20,7 +40,7 @@ def new(request, name):
     else:
         blog_authors = Post.objects.values('author').distinct()
         form = NewPostForm({'blog': blog})    
-        return render_to_response('blog/new.html', {'form': form,
+        return render_to_response('blog/new_post.html', {'form': form,
                                                     'blog': blog,
                                                     'blog_authors': blog_authors,
                                                     },)

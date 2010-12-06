@@ -28,29 +28,18 @@
 
 {% block buffer_B_main_window %}
     
-<form action="/blog/{{ blog.name }}/new_post/" method="POST">
+<form action="/blog/{{ blog.name }}/new_image/" method="POST">
   <fieldset>
     <p>
       <span style ="display:none">{{ form.blog }}</span>
     </p>
     
+    {% for field in form.visible_fields %}
     <p>
-      <label class="field_name">Tytuł posta:</label>
-      <span  class="field_value">{{ form.title }}</span>
+      {{ field.label_tag }}
+      {{ field }}
     </p>
-    
-    <p>
-      <label class="field_name">post właściwy:</label>
-    </p>
-    
-    <p>
-      <span class="field_value">{{ form.content }}</span>
-    </p>
-    
-    <p>
-      <label class="field_name">Ktoś Ty?:</label>
-      <span class="filed_value">{{ form.author }}</span>
-    </p>
+    {% endfor %}
     
     <div class="field_submit">
       <input type="submit" name="submit_post" value="Umieść na blogu" />
