@@ -9,7 +9,7 @@ class NewPostForm(ModelForm):
 
 #to jest chyba wcale niepotrzebne
 
-class NewImageForm(forms.Form):
+class NewImageForm(forms.ModelForm):
 #    url = forms.CharField(required=False)
     class Meta:
         model = Image
