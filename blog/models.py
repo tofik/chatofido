@@ -18,13 +18,14 @@ class Post(models.Model):
     title = models.CharField(max_length=60)
     author = models.CharField(max_length=20)
 
-class Image(models.Model):
+class Image(Post):
     def __unicode__ (self):
         return (self.title)
-    blog = models. ForeignKey(Blog)
-    title = models.CharField(max_length = 60)
+    # blog = models. ForeignKey(Blog)
+    # created = models.DateTimeField(auto_now_add = True)
+#    title = models.CharField(max_length = 60)
     image = models.ImageField(upload_to = "record/images")
-    author = models.CharField(max_length=20)
+#    author = models.CharField(max_length=20)
 
     # @models.permalink
     # def get_absolute_urls(self):

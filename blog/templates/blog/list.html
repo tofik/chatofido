@@ -39,6 +39,13 @@
     {{ post.content }}
   </div>
 
+  <div>
+<!--    {% for image in post.image.image %} -->
+    <img src = "/static/{{post.image}}" width = "600 px"> 
+<!--    {% empty %}
+    {% endfor %} -->
+  </div>
+
   <div class = "bubble" align = "right">
     <span>205 komentarzy</span>
   </div>
@@ -53,6 +60,16 @@
 {% empty %}
 {% endfor %}
 
+<!-- {% for image in images %}
+<table border = 0 cellpadding = 10>
+  <td>
+    <img src = "/static/{{image.image}}" width = "800 px">
+  </td>
+</table>
+{% empty %}
+raczej nie widze obrazka
+{% endfor %} 
+-->
 {% endblock %}
       
       

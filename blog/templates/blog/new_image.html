@@ -28,7 +28,7 @@
 
 {% block buffer_B_main_window %}
     
-<form action="/blog/{{ blog.name }}/new_image/" method="POST">
+<form enctype="multipart/form-data" form action="/blog/{{ blog.name }}/new_image/" method="POST">
   <fieldset>
     <p>
     </p>
