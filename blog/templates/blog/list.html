@@ -6,7 +6,8 @@
 {% endblock %}
 
 {% block menu %}
-<a href="/blog/{{blog.name}}/new_post/">nowy</a>
+<li><a href="/blog/{{blog.name}}/new_post/">text post</a></li>
+<li><a href="/blog/{{blog.name}}/new_image/">photo post</a></li>
 {% endblock %}
 
 
@@ -23,8 +24,11 @@
 {% block buffer_B_main_window %}
      
 {% for post in posts %}
+{% if post.image.image %}
+<div class = "document" style = "height: 600px;">
+{% else %}
 <div class = "document">
-
+{% endif %}
   <div></div>
   
   <div class = "dochead">
@@ -40,10 +44,9 @@
   </div>
 
   <div>
-<!--    {% for image in post.image.image %} -->
-    <img src = "/static/{{post.image}}" width = "600 px"> 
-<!--    {% empty %}
-    {% endfor %} -->
+    {% if post.image.image %}
+    <img src = "/static/{{post.image.image}}" width = "600 px">
+    {% endif %}
   </div>
 
   <div class = "bubble" align = "right">
