@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block menu %}
-<a href="/blog/{{blog.name}}">wpisy</a>
+<li><a href="/blog/{{blog.name}}/list/">wpisy</a></li>
 {% endblock %}
 
 {% block anotherblogname %}{% endblock %}
@@ -34,10 +34,15 @@
     </p>
     
     {% for field in form.visible_fields %}
-    <p>
-      {{ field.label_tag }}
+      {% if "Blog" in field.label_tag %}
+      {% else %}
+    <p>      
+      {{ field.label_tag }} 
+    </p>
+    <p>      
       {{ field }}
     </p>
+      {% endif %}
     {% endfor %}
     
     <div class="field_submit">

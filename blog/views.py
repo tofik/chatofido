@@ -1,6 +1,6 @@
-from blog.models import Post, Blog, Image
+from blog.models import Post, Blog, Image, Comment
 from django.shortcuts import render_to_response, HttpResponseRedirect
-from blog.forms import NewPostForm, NewImageForm
+from blog.forms import NewPostForm, NewImageForm, NewCommentForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 import datetime
@@ -46,6 +46,23 @@ def new_post(request, name):
                                                     },)
 
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
+
+def new_comment(request, name, id):
+    blog = Blog.objects.get(name = name)
+    post = Post.objects.get(id = id)
+    if request.method == 'POST':
+        form = NewCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+        else:
+            return HttpResponse("Incorrect form!!")
+    else:
+        form = NewCommentForm()
+        return render_to_response('blog/new_comment.html', {'form': form,
+                                                            'post': post,
+                                                            'blog': blog,})
     
 def blog(request, name = 'tofikowy'):
     blog = Blog.objects.get(name = name)
