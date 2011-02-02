@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block menu %}
-<li><a href="/blog/{{blog.name}}/new_post/">text post</a></li>
-<li><a href="/blog/{{blog.name}}/new_image/">photo post</a></li>
+
+<li><a href="/blog/{{blog.name}}/new_post/"><img src="/static/images/plus.png" ></a></li>
+<li><a href="/blog/{{blog.name}}/new_image/"><img src="/static/images/photo.png" ></a></li>
 {% endblock %}
 
 
@@ -15,7 +16,7 @@
 {% for blog_ in blogs %}
 {% if blog_.name == blog.name  %}
 {% else %}
-<li><a href = "{{ blog_.name}}">{{blog_.name}}</a></li>  
+<li><a href = "{{ blog_.name}}"><img src="/static/images/switch.png" ></a></li>  
 {% endif %}
 {% endfor %}
 {% endblock%}

@@ -70,10 +70,10 @@ img{border:0;}
 	display:inline;	
 	float:left;
 	/* width:87px; */
-	width: 150px;
+	width: 100px;
 	margin-right:60px;
 	text-align:center;
-	background-color:#FFF;
+#	background-color:#FFF;
 	margin-left:-40px;
 	text-transform:uppercase;
 }
@@ -93,7 +93,7 @@ img{border:0;}
 
 #menulinks a:hover{
 	display:block;
-	background-color:#fff;
+#	background-color:#fff;
 	text-decoration:none;
 	line-height:30px;
 	border-bottom: 5px solid #689e18;
