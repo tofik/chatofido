@@ -16,7 +16,7 @@
 {% for blog_ in blogs %}
 {% if blog_.name == blog.name  %}
 {% else %}
-<li><a href = "{{ blog_.name}}">{{ blog_.name}}</a> </li>  
+<li><a href = "/blog/{{ blog_.name}}/list/">{{ blog_.name}}</a> </li>  
 {% endif %}
 {% endfor %}
 {% endblock%}
@@ -51,7 +51,7 @@
   </div>
 
   <div class = "bubble" align = "right">
-    <span><a href = /blog/{{blog.name}}/{{post.id}}/new_comment>komentarze</a></span>
+    <span><a href = "/blog/{{blog.name}}/{{post.id}}/new_comment">komentarze</a></span>
   </div>
   
 </div>

@@ -25,7 +25,7 @@ class Image(Post):
 
 class Comment(models.Model):
     def __unicode__(self):
-        return (self.name)
+        return (self.author)
     post = models.ForeignKey(Post)
     content = models.TextField()
     created = models.DateTimeField(auto_now_add = True)

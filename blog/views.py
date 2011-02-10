@@ -59,11 +59,15 @@ def new_comment(request, name, id):
         else:
             return HttpResponse("Incorrect form!!")
     else:
-        form = NewCommentForm()
+        form = NewCommentForm({'post':post})
+        all_comments = post.comment_set.all().order_by('-created')
         return render_to_response('blog/new_comment.html', {'form': form,
                                                             'post': post,
-                                                            'blog': blog,})
+                                                            'blog': blog,
+                                                            'comments': all_comments,})
     
+    return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
+
 def blog(request, name = 'tofikowy'):
     blog = Blog.objects.get(name = name)
     all_blogs = Blog.objects.values('name').distinct()

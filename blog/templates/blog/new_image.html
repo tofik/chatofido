@@ -34,9 +34,13 @@
     </p>
     
     {% for field in form.visible_fields %}
-      {% if "Blog" in field.label_tag %}
-      {% else %}
-    <p>      
+    {% if "Blog" in field.label_tag %}
+    <span style = "display:none;">
+      {{ field.label_tag }} 
+      {{ field }}
+    </span>
+    {% else %}
+    <p>
       {{ field.label_tag }} 
     </p>
     <p>      
