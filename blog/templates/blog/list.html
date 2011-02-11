@@ -1,6 +1,5 @@
 {% extends "blog_base.html" %}
 
-
 {% block blog_title %}
 {{ blog.name }} PUNK?! widzenia
 {% endblock %}
@@ -11,7 +10,6 @@
 <li><a href="/blog/{{blog.name}}/new_image/">obrazkowy</a></li>
 {% endblock %}
 
-
 {% block switchblogs %} 
 {% for blog_ in blogs %}
 {% if blog_.name == blog.name  %}
@@ -21,59 +19,40 @@
 {% endfor %}
 {% endblock%}
 
-
 {% block buffer_B_main_window %}
      
 {% for post in posts %}
-{% if post.image.image %}
-<div class = "document" style = "height: 600px;">
-{% else %}
 <div class = "document">
-{% endif %}
   <div></div>
   
   <div class = "dochead">
     <span class = "dhead">{{ post.title}}</span>
   </div>
-
+  
   <div>
     <span class = "post">posted by {{ post.author }} | {{ post.created|date:"D d M Y" }} </span>
   </div>
-
+  
   <div class = "dcontent">
     {{ post.content }}
   </div>
-
+  
   <div>
     {% if post.image.image %}
     <img src = "/static/{{post.image.image}}" width = "600 px">
     {% endif %}
   </div>
-
+  
   <div class = "bubble" align = "right">
-    <span><a href = "/blog/{{blog.name}}/{{post.id}}/new_comment">komentarze</a></span>
+    <span><a style = "text-decoration:none;color:white;" href = "/blog/{{blog.name}}/{{post.id}}/new_comment">komentarze</a></span>
   </div>
   
 </div>
-
-<div class = "rtboxbg"></div>
 <div class = "gap"></div>
-
-
-
 {% empty %}
+nie ma postów tym blogu
 {% endfor %}
 
-<!-- {% for image in images %}
-<table border = 0 cellpadding = 10>
-  <td>
-    <img src = "/static/{{image.image}}" width = "800 px">
-  </td>
-</table>
-{% empty %}
-raczej nie widze obrazka
-{% endfor %} 
--->
 {% endblock %}
       
       

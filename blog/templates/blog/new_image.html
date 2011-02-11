@@ -31,24 +31,38 @@
 <form enctype="multipart/form-data" form action="/blog/{{ blog.name }}/new_image/" method="POST">
   <fieldset>
     <p>
+      <span style="display:none;">{{ form.blog }}</span>
     </p>
     
-    {% for field in form.visible_fields %}
-    {% if "Blog" in field.label_tag %}
-    <span style = "display:none;">
-      {{ field.label_tag }} 
-      {{ field }}
-    </span>
-    {% else %}
     <p>
-      {{ field.label_tag }} 
+      <label class="field_name">Tytuł posta:</label>
     </p>
-    <p>      
-      {{ field }}
+    <p>
+      <span  class="field_value">{{ form.title }}</span>
+    </p>    
+
+    <p>
+      <label class="field_name">post właściwy:</label>
     </p>
-      {% endif %}
-    {% endfor %}
     
+    <p>
+      <span class="field_value">{{ form.content }}</span>
+    </p>
+
+    <p>
+      wybierz obrazek:
+    </p>
+    <p>
+      {{ form.image }}
+    </p>
+    
+    <p>
+      <label class="field_name">Ktoś Ty?:</label>
+    </p>
+    <p>
+      {{ form.author }}
+    </p>
+
     <div class="field_submit">
       <input type="submit" name="submit_post" value="Umieść na blogu" />
     </div>
