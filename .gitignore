@@ -2,3 +2,8 @@
 *.pyc
 storage/db.sqlite
 static/record/*
+pip-log.txt
+static/.DS_Store
+static/.htaccess
+static/iepngfix.htc
+build/
