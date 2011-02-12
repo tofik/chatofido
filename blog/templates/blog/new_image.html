@@ -31,7 +31,7 @@
 <form enctype="multipart/form-data" form action="/blog/{{ blog.name }}/new_image/" method="POST">
   <fieldset>
     <p>
-      <span style="display:none;">{{ form.blog }}</span>
+      <span style="display:none;">{{ form.blog }} {{ form.comments }}</span>
     </p>
     
     <p>

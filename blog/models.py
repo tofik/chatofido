@@ -17,6 +17,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add = True)
     title = models.CharField(max_length=40)
     author = models.CharField(max_length=20)
+    comments = models.IntegerField()
 
 class Image(Post):
     def __unicode__ (self):

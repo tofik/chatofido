@@ -18,11 +18,11 @@ def new_image(request, name):
             return HttpResponse("Do dupy formularz!")
     else:
         blog_authors = Image.objects.values('author').distinct()
-        form = NewImageForm({'blog': blog})    
+        form = NewImageForm({'blog': blog, 'comments': 0})    
         return render_to_response('blog/new_image.html', {'form': form,
-                                                    'blog': blog,
-                                                    'blog_authors': blog_authors,
-                                                    },)
+                                                          'blog': blog,
+                                                          'blog_authors': blog_authors,
+                                                          },)
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
         
 
@@ -39,12 +39,12 @@ def new_post(request, name):
 
     else:
         blog_authors = Post.objects.values('author').distinct()
-        form = NewPostForm({'blog': blog})    
+        form = NewPostForm({'blog': blog, 'comments': 0})    
         return render_to_response('blog/new_post.html', {'form': form,
-                                                    'blog': blog,
-                                                    'blog_authors': blog_authors,
-                                                    },)
-
+                                                         'blog': blog,
+                                                         'blog_authors': blog_authors,
+                                                         },)
+    
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
 
 def new_comment(request, name, id):
@@ -56,6 +56,8 @@ def new_comment(request, name, id):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
+            post.comments += 1
+            post.save()
         else:
             return HttpResponse("Incorrect form!!")
     else:
@@ -65,7 +67,7 @@ def new_comment(request, name, id):
                                                             'post': post,
                                                             'blog': blog,
                                                             'comments': all_comments,})
-    
+
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
 
 def blog(request, name = 'tofikowy'):

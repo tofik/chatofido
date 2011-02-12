@@ -27,11 +27,12 @@
 
 
 {% block buffer_B_main_window %}
+
     
 <form action="/blog/{{ blog.name }}/new_post/" method="POST">
   <fieldset>
     <p>
-      <span style ="display:none">{{ form.blog }}</span>
+      <span style ="display:none">{{ form.blog }} {{ form.comments }}</span>
     </p>
     
     <p>

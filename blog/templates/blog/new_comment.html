@@ -24,6 +24,9 @@
   {% empty %}
   na razie brak komentarzy
   {% endfor %}
+  <p>
+    ilość komentarzy : {{ post.comments }}
+  </p>
 </fieldset>
 
 
@@ -51,6 +54,7 @@
     </p>
     <p>
     <p>
+      <span style="display:none">{{ form.post }}</span>
       <span class="field_value">{{ form.content }}</span>
     </p>
     
