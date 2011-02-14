@@ -8,16 +8,29 @@ class BlogAdmin(admin.ModelAdmin):
 
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Personal information', {'fields': ['author', 'title']}),
-        ('Content'             , {'fields': ['content'], 'classes': ['collapse']}),
+        ('Basic information', {'fields': ['author', 'title']}),
+        ('Content'          , {'fields': ['content'], 'classes': ['collapse']}),
         ]
     list_display = ('title', 'author', 'created')
     list_filter = ['created']
     search_fields = ['title', 'author']
 
-    
 
+class ImageAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Basic information', {'fields': ['author', 'title']}),
+        ('Content'          , {'fields': ['content', 'image'], 'classes': ['collapse']}),
+        ]
+
+class CommentAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Basic information', {'fields': ['author']}),
+        ('Content'          , {'fields': ['content'], 'classes': ['collapse']})
+        ]
+    list_display = ('author', 'created', 'content')
+    list_filter = ('author', 'created')
+    
 admin.site.register(Post, PostAdmin)
 admin.site.register(Blog, BlogAdmin)
-admin.site.register(Image)
-admin.site.register(Comment)
+admin.site.register(Image, ImageAdmin)
+admin.site.register(Comment, CommentAdmin)

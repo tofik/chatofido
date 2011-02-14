@@ -25,5 +25,12 @@ def new(request, name):
     return HttpResponseRedirect(reverse('links.views.links', args = (owner.name, )))
 
 
-def links(request, name = 'tofikowy'):
-    return render_to_response('links/list.html', {'view_name': name, })
+def links(request, name = "empty"):
+    if name == "empty":
+        owner = Owner.objects.get(id = 1)
+    else: 
+        owner = Owner.objects.get(name = name)
+
+
+
+    return render_to_response('links/list.html', {'view_name': owner.name, })

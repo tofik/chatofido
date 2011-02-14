@@ -70,20 +70,22 @@ def new_comment(request, name, id):
 
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
 
-def blog(request, name = 'tofikowy'):
-    blog = Blog.objects.get(name = name)
+def blog(request, name = "empty"):
+    if name == "empty":
+        blog = Blog.objects.get(id = 1)
+    else:
+        blog = Blog.objects.get(name = name)
+
     all_blogs = Blog.objects.values('name').distinct()
     blog_authors = blog.post_set.values('author').distinct()
     all_authors = Post.objects.values('author').distinct()
     all_posts = blog.post_set.all().order_by('-created')
-#    all_images = blog.image_set.values('image')
 
     return render_to_response('blog/list.html', {'blog': blog,
                                                  'blogs': all_blogs,
                                                  'blog_authors': blog_authors,
                                                  'all_authors': all_authors,
                                                  'posts': all_posts,
- #                                                'images': all_images,
                                                  'today': datetime.date.today().month,
                                                  },
                               )

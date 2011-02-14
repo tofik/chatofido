@@ -9,7 +9,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
                        url(r"^blog/", include("blog.urls")),
                        url(r"^links/", include("links.urls")),
-
+#                       url(r"^books/", include("books.urls")),
+                       url(r"^$", include("blog.urls")),
                        
 
 
