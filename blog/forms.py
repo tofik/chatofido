@@ -12,6 +12,7 @@ class NewPostForm(ModelForm):
 class NewImageForm(forms.ModelForm):
 #    url = forms.CharField(required=False)
     class Meta:
+        abstract=True
         model = Image
 
 class NewCommentForm(forms.ModelForm):
