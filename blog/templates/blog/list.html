@@ -5,17 +5,13 @@
 {% endblock %}
 
 {% block menu %}
-
-<li><a href="/blog/{{blog.name}}/new_post/">textowy</a></li>
+<li><a href="/blog/{{blog.name}}/new_post/">textowy</a></li> 
 <li><a href="/blog/{{blog.name}}/new_image/">obrazkowy</a></li>
 {% endblock %}
 
 {% block switchblogs %} 
 {% for blog_ in blogs %}
-{% if blog_.name == blog.name  %}
-{% else %}
-<li><a href = "/blog/{{ blog_.name}}/list/">{{ blog_.name}}</a> </li>  
-{% endif %}
+<li><a href = "/blog/{{ blog_.name}}/list/">{{ blog_.name}}</a></li></br>  
 {% endfor %}
 {% endblock%}
 
@@ -30,7 +26,7 @@
   </div>
   
   <div>
-    <span class = "post">posted by {{ post.author }} | {{ post.created|date:"D d M Y" }} </span>
+    <span class = "post">dodane przez {{ post.author }} | {{ post.created|date:"D d M Y" }} </span>
   </div>
   
   <div class = "dcontent">

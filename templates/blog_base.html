@@ -9,9 +9,7 @@
     <!-- wrapper starts -->
     <div id = "wrapper">
       <!-- container starts-->
-      <div id = "container">
-
-
+      <div id = "container" style="float:left;">
 
 	<!-- ltcontent starts -->
 	<div id = "ltcontent">	
@@ -51,10 +49,11 @@
 	      <!-- ltposts starts -->
 	      <div class = "ltposts">
 		<ul>
+		  <span class = "publish"><b>tego:</b> 
 		  {% for author in blog_authors%}
 		  <li>{{ author.author|wordwrap:8 }}</li>
 		  {% empty %}
-		  {% endfor %}
+		  {% endfor %}</span>
 		</ul>
 	      </div>
 	      <!-- ltposts ends -->
@@ -62,10 +61,11 @@
 	      <!-- rtposts starts -->
 	      <div class = "rtposts">
 		<ul>
+		  <span class = "publish"><b>wszyscy:</b>
 		  {% for author_ in all_authors %}
 		  <li>{{ author_.author|wordwrap:8 }}</li>
 		  {% empty %}
-		  {% endfor %}
+		  {% endfor %}</span>
 	      </ul>
 	      </div>
 	      <!-- rtposts ends -->
@@ -80,13 +80,10 @@
 	</div>
 	<!-- ltcontent ends -->
 
-
-
-
 	<!-- rtcontent starts -->
 	<div id = "rtcontent">
 	  
-	  <div class = "publish"> Pyblished by ... </div>
+	  <div class = "publish"> (foto)blog ... </div>
 	  
 	  <!-- head starts -->
 	  <div class = "head">
@@ -101,7 +98,6 @@
 	  <div id = "menulinks">
 	    <ul>
 	      {% block menu %}{% endblock %}
-	      {% block switchblogs %}{% endblock %}
 	    </ul>
 	  </div>
 	  <!-- menulinks ends -->
@@ -117,13 +113,37 @@
 	<!-- rtcontent sends -->
 
 
-
 	<div class = "clear"></div>
 	
 	<div id = "footer"></div>
 	
       </div>
       <!-- container end -->
+
+
+
+
+      <!-- right side menu with blog buttons-->
+      <div style="float:right;">
+	<!-- menulinks starts -->
+	<div class = "publish">
+	  blogi:
+	</div>
+	<div id = "menulinks">
+	  <ul>
+	    {% block switchblogs %}{% endblock %}
+	  </ul>
+	</div>
+	<!-- menulinks ends -->
+	</div>
+      <!-- right side menu with blog buttons-->
+
+
+
+
+
+
+
     </div>
     <!-- wrapper ends-->
   </body>
