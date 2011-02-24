@@ -1,0 +1,36 @@
+{% extends "blog_base.html" %}
+
+{% block buffer_B_main_window %}
+
+<h2>zaloguj się</h2>
+
+<form class="login-form" method="post" action="{% url django.contrib.auth.views.login %}">
+  {% csrf_token %}
+
+<fieldset>
+  <p>
+    <label class="field_name">{{ form.username.label_tag }}</label>
+  </p>
+  <p>
+    <span class="field_value">{{ form.username }}</span>
+  </p>
+  <p>
+    <label class="field_name">{{ form.password.label_tag }}</label>
+  </p>
+  <p>
+    <span class="fiel_value">{{ form.password }}</span>
+  </p>
+
+  <div style="text-align:left">
+    <input type="submit" value="login" />
+  </div>
+  <input type="hidden" name="next" value="{{ login_next }}" />
+  <ul>
+    <li><a href="#">Forgot your password?</a></li>
+    <li><a href="#">Register</a></li>
+  </ul>
+
+</fieldset>
+</form>
+
+{% endblock %}
