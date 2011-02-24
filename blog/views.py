@@ -3,9 +3,52 @@ from django.shortcuts import render_to_response, HttpResponseRedirect
 from blog.forms import NewPostForm, NewImageForm, NewCommentForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import forms as auth_form
+from django.contrib.auth import logout
 import datetime
 
+# def login_view(request):
+#     login_form = auth_form.AuthenticationForm()
 
+#     return render_to_response('blog/login_form.html', {'login_form':login_form,
+#                                                  'login_next': "blog/",})
+
+def logout_view(request):
+    logout(request)
+
+    return HttpResponse("wylogowano")
+
+    # return render_to_response('blog/list.html', {'blog': blog,
+    #                                              'blogs': all_blogs,
+    #                                              'blog_authors': blog_authors,
+    #                                              'all_authors': all_authors,
+    #                                              'posts': all_posts,
+    #                                              'today': datetime.date.today().month,
+    #                                              },
+    #                           )
+
+def blog(request, name = "empty"):
+    if name == "empty":
+        blog = Blog.objects.get(id = 1)
+    else:
+        blog = Blog.objects.get(name = name)
+
+    all_blogs = Blog.objects.values('name').distinct()
+    blog_authors = blog.post_set.values('author').distinct()
+    all_authors = Post.objects.values('author').distinct()
+    all_posts = blog.post_set.all().order_by('-created')
+
+    return render_to_response('blog/list.html', {'blog': blog,
+                                                 'blogs': all_blogs,
+                                                 'blog_authors': blog_authors,
+                                                 'all_authors': all_authors,
+                                                 'posts': all_posts,
+                                                 'today': datetime.date.today().month,
+                                                 },
+                              )
+
+@login_required
 def new_image(request, name):
     blog = Blog.objects.get(name = name)
     if request.method == 'POST':
@@ -25,7 +68,7 @@ def new_image(request, name):
                                                           },)
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
         
-
+@login_required
 def new_post(request, name):
     blog = Blog.objects.get(name = name)
     if request.method == 'POST':
@@ -47,6 +90,7 @@ def new_post(request, name):
     
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
 
+@login_required
 def new_comment(request, name, id):
     blog = Blog.objects.get(name = name)
     post = Post.objects.get(id = id)
@@ -69,23 +113,3 @@ def new_comment(request, name, id):
                                                             'comments': all_comments,})
 
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
-
-def blog(request, name = "empty"):
-    if name == "empty":
-        blog = Blog.objects.get(id = 1)
-    else:
-        blog = Blog.objects.get(name = name)
-
-    all_blogs = Blog.objects.values('name').distinct()
-    blog_authors = blog.post_set.values('author').distinct()
-    all_authors = Post.objects.values('author').distinct()
-    all_posts = blog.post_set.all().order_by('-created')
-
-    return render_to_response('blog/list.html', {'blog': blog,
-                                                 'blogs': all_blogs,
-                                                 'blog_authors': blog_authors,
-                                                 'all_authors': all_authors,
-                                                 'posts': all_posts,
-                                                 'today': datetime.date.today().month,
-                                                 },
-                              )
