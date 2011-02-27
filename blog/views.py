@@ -5,18 +5,80 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import forms as auth_form
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
 import datetime
 
-# def login_view(request):
-#     login_form = auth_form.AuthenticationForm()
+def login_view(request):
+    if 'next' in request.GET:
+        next = request.GET['next']
+        next = next.split('/')
+ #        next_blog_name = next[2]
+#         if 'new_comment' in next:
+#             next_type = next[4]
+#             next_post_id = next[3]
+#         else:
+#             next_type = next[3]
+# #
+    else:
+#       next = request.path
+       next = request.POST['next']
+       next = next.split('u')
+       next_blog_name = next[3]
+       next_blog_name = next_blog_name[1:-3]
+       if 'new_comment' in next[5]:
+           next_post_id = next[4]
+           next_post_id = next_post_id[1:-3]
+           next_type = next[5]
+           next_type = next_type[1:-3]
+       else:
+           next_type = next[4]
+           next_type = next_type[1:-3]
+       
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username = username, password = password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                # return HttpResponse('zalogowano do %s' % next_post_id)
 
-#     return render_to_response('blog/login_form.html', {'login_form':login_form,
-#                                                  'login_next': "blog/",})
+                blog = Blog.objects.get(name = next_blog_name)
+                blog_authors = Image.objects.values('author').distinct()
+                if next_type == 'new_post':
+                    form = NewPostForm({'blog': blog, 'comments': 0})    
+                    return render_to_response('blog/new_image.html', {'form': form,
+                                                                      'blog': blog,
+                                                                      'blog_authors': blog_authors,
+                                                                      },)
+                elif next_type == 'new_image':
+                    form = NewImageForm({'blog': blog, 'comments': 0})    
+                    return render_to_response('blog/new_image.html', {'form': form,
+                                                                      'blog': blog,
+                                                                      'blog_authors': blog_authors,
+                                                                      },)
+                elif next_type == 'new_comment':
+                    post = next_post_id
+                    form = NewCommentForm({'post':post})
+                    post = Post.objects.get(id = post)
+                    all_comments = post.comment_set.all().order_by('-created')
+                    return render_to_response('blog/new_comment.html', {'form': form,
+                                                                        'post': post,
+                                                                        'blog': blog,
+                                                                        'comments': all_comments,})
+                else:
+                    return HttpResponse('cos poszlo nie tak, jak trzeba....')
+        else:
+            return HttpResponse('Podane konto nie istnieje!!')
+
+    else:
+        login_form = auth_form.AuthenticationForm()
+        return render_to_response('blog/login_form.html', {'login_form':login_form,
+                                                           'login_next': next,
+                                                           })
 
 def logout_view(request):
     logout(request)
-
     return HttpResponse("wylogowano")
 
     # return render_to_response('blog/list.html', {'blog': blog,

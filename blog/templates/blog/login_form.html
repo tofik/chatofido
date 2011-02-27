@@ -1,0 +1,45 @@
+{% extends "blog_base.html" %}
+
+{% block buffer_B_main_window %}
+
+<h2>zaloguj się</h2>
+
+<form action="/accounts/login/" method="POST">
+  {% csrf_token %}
+
+<fieldset>
+  {% for field in login_form %}
+  {{ field.label_tag }}
+  {{ field }}
+  {% empty %}
+  {% endfor %}
+<!-- </fieldset> -->
+
+<!-- <fieldset> -->
+<!--   <p> -->
+<!--     <label class="field_name">{{ login_form.username.label_tag }}</label> -->
+<!--   </p> -->
+<!--   <p> -->
+<!--     <span class="field_value">{{ login_form.username }}</span> -->
+<!--   </p> -->
+<!--   <p> -->
+<!--     <label class="field_name">{{ login_form.password.label_tag }}</label> -->
+<!--   </p> -->
+<!--   <p> -->
+<!--     <span class="fiel_value">{{ login_form.password }}</span> -->
+<!--   </p> -->
+
+next{{ login_next }}koniec
+  <div style="text-align:left">
+    <input type="submit" value="login" />
+  </div>
+  <input type="hidden" name="next" value="{{ login_next }}" />
+  <ul>
+    <li><a href="#">Forgot your password?</a></li>
+    <li><a href="#">Register</a></li>
+  </ul>
+
+</fieldset>
+</form>
+
+{% endblock %}
