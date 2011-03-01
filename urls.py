@@ -9,11 +9,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
                        url(r"^blog/", include("blog.urls")),
                        url(r"^links/", include("links.urls")),
-#                       url(r"^books/", include("books.urls")),
                        url(r"^$", include("blog.urls")),
-#                       url(r"^accounts/login/$", 'blog.views.login_view'),
                        url(r"^accounts/login/$", 'blog.views.login_view'),
-#                       url(r"^accounts/login/$", "django.contrib.auth.views.login", {'template_name': '/blog/login_form.html'}),
                        
 
 

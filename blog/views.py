@@ -9,31 +9,6 @@ from django.contrib.auth import logout, login, authenticate
 import datetime
 
 def login_view(request):
-    if 'next' in request.GET:
-        next = request.GET['next']
-        next = next.split('/')
- #        next_blog_name = next[2]
-#         if 'new_comment' in next:
-#             next_type = next[4]
-#             next_post_id = next[3]
-#         else:
-#             next_type = next[3]
-# #
-    else:
-#       next = request.path
-       next = request.POST['next']
-       next = next.split('u')
-       next_blog_name = next[3]
-       next_blog_name = next_blog_name[1:-3]
-       if 'new_comment' in next[5]:
-           next_post_id = next[4]
-           next_post_id = next_post_id[1:-3]
-           next_type = next[5]
-           next_type = next_type[1:-3]
-       else:
-           next_type = next[4]
-           next_type = next_type[1:-3]
-       
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -41,54 +16,23 @@ def login_view(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                # return HttpResponse('zalogowano do %s' % next_post_id)
-
-                blog = Blog.objects.get(name = next_blog_name)
-                blog_authors = Image.objects.values('author').distinct()
-                if next_type == 'new_post':
-                    form = NewPostForm({'blog': blog, 'comments': 0})    
-                    return render_to_response('blog/new_image.html', {'form': form,
-                                                                      'blog': blog,
-                                                                      'blog_authors': blog_authors,
-                                                                      },)
-                elif next_type == 'new_image':
-                    form = NewImageForm({'blog': blog, 'comments': 0})    
-                    return render_to_response('blog/new_image.html', {'form': form,
-                                                                      'blog': blog,
-                                                                      'blog_authors': blog_authors,
-                                                                      },)
-                elif next_type == 'new_comment':
-                    post = next_post_id
-                    form = NewCommentForm({'post':post})
-                    post = Post.objects.get(id = post)
-                    all_comments = post.comment_set.all().order_by('-created')
-                    return render_to_response('blog/new_comment.html', {'form': form,
-                                                                        'post': post,
-                                                                        'blog': blog,
-                                                                        'comments': all_comments,})
-                else:
-                    return HttpResponse('cos poszlo nie tak, jak trzeba....')
+                return HttpResponseRedirect(request.POST['next'])
+            else:
+                return HttpResponse('cos poszlo nie tak, jak trzeba....')
         else:
             return HttpResponse('Podane konto nie istnieje!!')
 
     else:
         login_form = auth_form.AuthenticationForm()
         return render_to_response('blog/login_form.html', {'login_form':login_form,
-                                                           'login_next': next,
-                                                           })
+                                                           'login_next': request.GET['next'],
+                                                           },
+                                  )
 
 def logout_view(request):
     logout(request)
-    return HttpResponse("wylogowano")
+    return HttpResponseRedirect("/")
 
-    # return render_to_response('blog/list.html', {'blog': blog,
-    #                                              'blogs': all_blogs,
-    #                                              'blog_authors': blog_authors,
-    #                                              'all_authors': all_authors,
-    #                                              'posts': all_posts,
-    #                                              'today': datetime.date.today().month,
-    #                                              },
-    #                           )
 
 def blog(request, name = "empty"):
     if name == "empty":
@@ -100,6 +44,10 @@ def blog(request, name = "empty"):
     blog_authors = blog.post_set.values('author').distinct()
     all_authors = Post.objects.values('author').distinct()
     all_posts = blog.post_set.all().order_by('-created')
+    if request.user.is_anonymous:
+        username = "empty"
+    else:
+        username = request.user
 
     return render_to_response('blog/list.html', {'blog': blog,
                                                  'blogs': all_blogs,
@@ -107,6 +55,7 @@ def blog(request, name = "empty"):
                                                  'all_authors': all_authors,
                                                  'posts': all_posts,
                                                  'today': datetime.date.today().month,
+                                                 'user': username,
                                                  },
                               )
 
@@ -119,6 +68,7 @@ def new_image(request, name):
             post = form.save(commit=False)
             post.blog = blog
             post.save()
+            print request.user
         else:
             return HttpResponse("Do dupy formularz!")
     else:
@@ -127,7 +77,10 @@ def new_image(request, name):
         return render_to_response('blog/new_image.html', {'form': form,
                                                           'blog': blog,
                                                           'blog_authors': blog_authors,
-                                                          },)
+                                                          'user': request.user,
+                                                          },
+                                  )
+
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
         
 @login_required
@@ -148,11 +101,13 @@ def new_post(request, name):
         return render_to_response('blog/new_post.html', {'form': form,
                                                          'blog': blog,
                                                          'blog_authors': blog_authors,
-                                                         },)
+                                                         'user': request.user,
+                                                         },
+                                  )
     
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
 
-@login_required
+#@login_required
 def new_comment(request, name, id):
     blog = Blog.objects.get(name = name)
     post = Post.objects.get(id = id)
@@ -172,6 +127,8 @@ def new_comment(request, name, id):
         return render_to_response('blog/new_comment.html', {'form': form,
                                                             'post': post,
                                                             'blog': blog,
-                                                            'comments': all_comments,})
+                                                            'comments': all_comments,
+                                                            },
+                                  )
 
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))

@@ -51,7 +51,7 @@
 		<ul>
 		  <span class = "publish"><b>tego:</b> 
 		  {% for author in blog_authors%}
-		  <li>{{ author.author|wordwrap:8 }}</li>
+		  <li>{{ author.author|slice:":8" }}</li>
 		  {% empty %}
 		  {% endfor %}</span>
 		</ul>
@@ -63,7 +63,7 @@
 		<ul>
 		  <span class = "publish"><b>wszyscy:</b>
 		  {% for author_ in all_authors %}
-		  <li>{{ author_.author|wordwrap:8 }}</li>
+		  <li>{{ author_.author|slice:":8" }}</li>
 		  {% empty %}
 		  {% endfor %}</span>
 	      </ul>
@@ -82,8 +82,14 @@
 
 	<!-- rtcontent starts -->
 	<div id = "rtcontent">
-	  
-	  <div class = "publish"> (foto)blog ... <a href="/blog/logout">wyloguj</a></div>
+	  {{ user }}
+	  <div class="publish"> (foto)blog ... 
+	    {% if user == "empty" %}
+	    <i><font size ="-2">anonimowy uzytkownik</font></i>
+	    {% else %}
+	    <a href="/blog/logout">{{ user }} - wyloguj</a>
+	    {% endif %}
+	  </div>
 	  
 	  <!-- head starts -->
 	  <div class = "head">
