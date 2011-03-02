@@ -84,7 +84,7 @@
 	<div id = "rtcontent">
 	  {{ user }}
 	  <div class="publish"> (foto)blog ... 
-	    {% if user == "empty" %}
+	    {% if user == "AnonymousUser" %}
 	    <i><font size ="-2">anonimowy uzytkownik</font></i>
 	    {% else %}
 	    <a href="/blog/logout">{{ user }} - wyloguj</a>

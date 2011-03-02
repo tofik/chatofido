@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import forms as auth_form
 from django.contrib.auth import logout, login, authenticate
 import datetime
+#from django.template import RequestContext
 
 def login_view(request):
     if request.method == 'POST':
@@ -44,20 +45,24 @@ def blog(request, name = "empty"):
     blog_authors = blog.post_set.values('author').distinct()
     all_authors = Post.objects.values('author').distinct()
     all_posts = blog.post_set.all().order_by('-created')
-    if request.user.is_anonymous:
-        username = "empty"
-    else:
-        username = request.user
+    
+    # if request.user.is_anonymous:
+    #     username = "empty"
+    # else:
+    #     username = request.user
 
-    return render_to_response('blog/list.html', {'blog': blog,
-                                                 'blogs': all_blogs,
-                                                 'blog_authors': blog_authors,
-                                                 'all_authors': all_authors,
-                                                 'posts': all_posts,
-                                                 'today': datetime.date.today().month,
-                                                 'user': username,
-                                                 },
+    return render_to_response('blog/list.html', 
+                              {'blog': blog,
+                               'blogs': all_blogs,
+                               'blog_authors': blog_authors,
+                               'all_authors': all_authors,
+                               'posts': all_posts,
+                               'today': datetime.date.today().month,
+                               'user': request.user,
+                               },
+#                              context_instance=RequestContext(request)
                               )
+                              
 
 @login_required
 def new_image(request, name):
