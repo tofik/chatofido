@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import forms as auth_form
 from django.contrib.auth import logout, login, authenticate
 import datetime
-#from django.template import RequestContext
+from django.template import RequestContext
 
 def login_view(request):
     if request.method == 'POST':
@@ -27,7 +27,7 @@ def login_view(request):
         login_form = auth_form.AuthenticationForm()
         return render_to_response('blog/login_form.html', {'login_form':login_form,
                                                            'login_next': request.GET['next'],
-                                                           },
+                                                           }, context_instance = RequestContext(request)
                                   )
 
 def logout_view(request):
@@ -46,11 +46,6 @@ def blog(request, name = "empty"):
     all_authors = Post.objects.values('author').distinct()
     all_posts = blog.post_set.all().order_by('-created')
     
-    # if request.user.is_anonymous:
-    #     username = "empty"
-    # else:
-    #     username = request.user
-
     return render_to_response('blog/list.html', 
                               {'blog': blog,
                                'blogs': all_blogs,
@@ -58,9 +53,8 @@ def blog(request, name = "empty"):
                                'all_authors': all_authors,
                                'posts': all_posts,
                                'today': datetime.date.today().month,
-                               'user': request.user,
                                },
-#                              context_instance=RequestContext(request)
+                              context_instance=RequestContext(request)
                               )
                               
 
@@ -83,7 +77,7 @@ def new_image(request, name):
                                                           'blog': blog,
                                                           'blog_authors': blog_authors,
                                                           'user': request.user,
-                                                          },
+                                                          }, context_instance = RequestContext(request)
                                   )
 
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
@@ -107,7 +101,7 @@ def new_post(request, name):
                                                          'blog': blog,
                                                          'blog_authors': blog_authors,
                                                          'user': request.user,
-                                                         },
+                                                         }, context_instance = RequestContext(request)
                                   )
     
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))
@@ -133,7 +127,7 @@ def new_comment(request, name, id):
                                                             'post': post,
                                                             'blog': blog,
                                                             'comments': all_comments,
-                                                            },
+                                                            }, context_instance = RequestContext(request)
                                   )
 
     return HttpResponseRedirect(reverse('blog.views.blog', args = (blog.name, )))

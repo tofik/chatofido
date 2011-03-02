@@ -82,12 +82,11 @@
 
 	<!-- rtcontent starts -->
 	<div id = "rtcontent">
-	  {{ user }}
 	  <div class="publish"> (foto)blog ... 
-	    {% if user == "AnonymousUser" %}
+	    {% if user.is_anonymous %}
 	    <i><font size ="-2">anonimowy uzytkownik</font></i>
 	    {% else %}
-	    <a href="/blog/logout">{{ user }} - wyloguj</a>
+	    <a href="/blog/logout" style="text-decoration: none;"><b><i>{{ user }}</i></b><font size="-2"> - wyloguj</font></a>
 	    {% endif %}
 	  </div>
 	  
