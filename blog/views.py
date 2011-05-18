@@ -9,7 +9,7 @@ from django.contrib.auth import logout, login, authenticate
 import datetime
 from django.template import RequestContext
 
-def login_view(request):
+def login_view(request, next = "/"):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -25,8 +25,11 @@ def login_view(request):
 
     else:
         login_form = auth_form.AuthenticationForm()
+        if next != "/":
+            next = reques.GET['next']
+            
         return render_to_response('blog/login_form.html', {'login_form':login_form,
-                                                           'login_next': request.GET['next'],
+                                                           'login_next': next,
                                                            }, context_instance = RequestContext(request)
                                   )
 
