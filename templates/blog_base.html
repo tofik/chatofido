@@ -14,7 +14,26 @@
     <link rel="stylesheet" href="/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 
     <script type="text/javascript">
+      is_anonymous = {{ user.is_anonymous|lower }};
+      
       $(document).ready(function(){
+      
+      if (is_anonymous) {
+        $(".menulinks:first")
+          .find('a')
+          .attr("href", "/accounts/login/")
+          .fancybox({
+      'titlePosition': 'inside',
+      'transitionIn': 'elastic',
+      'transitionOut': 'none',
+      'autoScale': false,
+      'autoDimensions': false,
+      'hideOnContentClick': false,
+      'width': '660',
+      'height': '220',
+      });
+      }
+      
        $("a#login").fancybox({
         'titlePosition': 'inside',
         'transitionIn': 'elastic',
@@ -41,9 +60,9 @@
       <div id = "container" style="float:left;">
 
 	<!-- ltcontent starts -->
-	<div id = "ltcontent">	
+	<div id = "ltcontent" align = "center">	
 	  <!-- hdlogo starts -->
-	  <div id = "hdlogo" align = "center">
+	  <div id = "hdlogo" align="center">
 	    <a href = "/blog"><img src = "/static/css/archiwum.jpg" width = "200px"></a>
 	    <a href = "/links"><img src = "/static/css/pudelko.jpg" width = "200px"></a>
 	    <a href = "#"><img src = "/static/css/polka_xsiazek.jpg" width = "200px"></a>
@@ -51,8 +70,8 @@
 	  <!-- hdlogo ends -->
 
 	  <!-- about starts -->
-	  <div id = "about">
-	    <div class = "lthead" align = "center">
+	  <div id = "about" align = "center">
+	    <div class = "lthead">
 	      <span class = "tphead">O blogu...</span>
 	    </div>
 
@@ -60,7 +79,7 @@
 	      To miał być blog, w zamyśle, ale wydaje się, że, przynajmniej teoretycznie, może wyjdzie z tego coś więcej...
 	    </div>
 	    <div class = "link">
-	      <a href = "http://chatofido.blogspot.com" style="font-size:12px;text-decoration:none;color:white; font-weight:bold;">tymczasowe siedlisko bloga </a>
+	      <a href = "http://chatofido.blogspot.com" style="font-size: 9px;text-decoration:none;color:white; font-weight:bold;">tymczasowe siedlisko bloga </a>
 	    </div>
 	  </div>
 	  <!-- about ends -->
@@ -129,7 +148,7 @@
 	  <div class = "tagln"></div>
 	  
 	  <!-- menulinks starts -->
-	  <div id = "menulinks">
+	  <div class = "menulinks">
 	    <ul>
 	      {% block menu %}{% endblock %}
 	    </ul>
@@ -163,7 +182,7 @@
 	<div class = "publish">
 	  blogi:
 	</div>
-	<div id = "menulinks">
+	<div class = "menulinks">
 	  <ul>
 	    {% block switchblogs %}{% endblock %}
 	  </ul>

@@ -57,7 +57,7 @@ img{border:0;}
 }
 
 /*menulinks*/
-#menulinks ul{
+.menulinks ul{
 	list-style:none;
 	margin-top:15px;
 	height:40px;
@@ -67,7 +67,7 @@ img{border:0;}
 	text-align: bottom;
 }
 
-#menulinks li{
+.menulinks li{
 	display:inline;	
 	float:left;
 	/* width:87px; */
@@ -84,7 +84,7 @@ img{border:0;}
 	background-color:#FFF;
 }
 
-#menulinks a{
+.menulinks a{
 	display:block;
 	font:15px Tahoma, Geneva, sans-serif;
 	color:#5c3315;
@@ -92,7 +92,7 @@ img{border:0;}
 	line-height:30px;
 }
 
-#menulinks a:hover{
+.menulinks a:hover{
 	display:block;
 #	background-color:#fff;
 	text-decoration:none;
@@ -152,6 +152,7 @@ img{border:0;}
 	height:7px;
 	width:430px;
 	margin-left: 40px;
+	border: 0
 }
 
 /*green bubble*/
@@ -182,7 +183,6 @@ img{border:0;}
 #about{
 	width:240px;
 	background-color:#d5d1bf;
-	margin-left:24px;
 	margin-top: 15px;
 	height:220px;
 }
@@ -190,7 +190,6 @@ img{border:0;}
 #mostpop{
 	width:240px;
 	background-color:#d5d1bf;
-	margin-left:24px;
 	margin-top: 15px;
 	height:250px;
 }
@@ -226,10 +225,11 @@ img{border:0;}
 }
 
 .link{
-#	width:280px;
+	width:180px;
 	background-color:#999580;
 	margin-top:15px;
 	margin-left: 15px;
+	margin-right: 15px;
 	height:38px;
 	text-align:center;
 	font:10px Tahoma, Geneva, sans-serif;
