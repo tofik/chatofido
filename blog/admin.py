@@ -23,7 +23,7 @@ class PostAdmin(admin.ModelAdmin):
 class ImageAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Basic information', {'fields': ['author', 'title']}),
-        ('Content'          , {'fields': ['content', 'image', 'blog', 'klocek'], 'classes': ['collapse']}),
+        ('Content'          , {'fields': ['content', 'image', 'blog'], 'classes': ['collapse']}),
         ]
 
 class CommentAdmin(admin.ModelAdmin):
