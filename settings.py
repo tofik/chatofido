@@ -89,5 +89,4 @@ INSTALLED_APPS = (
     'blog',
     'links',
     'south',
-    'southtut',
 )
