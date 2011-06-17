@@ -88,4 +88,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'blog',
     'links',
+    'south',
+    'southtut',
 )
