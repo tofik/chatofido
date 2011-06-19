@@ -19,7 +19,7 @@
       $(document).ready(function(){
       
       if (is_anonymous) {
-        $(".menulinks:first")
+        $("#menulinks")
           .find('a')
           .attr("href", "/accounts/login/")
           .fancybox({
@@ -148,7 +148,7 @@
 	  <div class = "tagln"></div>
 	  
 	  <!-- menulinks starts -->
-	  <div class = "menulinks">
+	  <div id = "menulinks">
 	    <ul>
 	      {% block menu %}{% endblock %}
 	    </ul>
@@ -178,16 +178,16 @@
 
       <!-- right side menu with blog buttons-->
       <div style="float:right;">
-	<!-- menulinks starts -->
+	<!-- menublogs starts -->
 	<div class = "publish">
 	  blogi:
 	</div>
-	<div class = "menulinks">
+	<div id = "menublogs">
 	  <ul>
 	    {% block switchblogs %}{% endblock %}
 	  </ul>
 	</div>
-	<!-- menulinks ends -->
+	<!-- menublogs ends -->
 	</div>
       <!-- right side menu with blog buttons-->
 

@@ -57,7 +57,7 @@ img{border:0;}
 }
 
 /*menulinks*/
-.menulinks ul{
+#menulinks ul{
 	list-style:none;
 	margin-top:15px;
 	height:40px;
@@ -67,7 +67,7 @@ img{border:0;}
 	text-align: bottom;
 }
 
-.menulinks li{
+#menulinks li{
 	display:inline;	
 	float:left;
 	/* width:87px; */
@@ -84,7 +84,7 @@ img{border:0;}
 	background-color:#FFF;
 }
 
-.menulinks a{
+#menulinks a{
 	display:block;
 	font:15px Tahoma, Geneva, sans-serif;
 	color:#5c3315;
@@ -92,7 +92,7 @@ img{border:0;}
 	line-height:30px;
 }
 
-.menulinks a:hover{
+#menulinks a:hover{
 	display:block;
 #	background-color:#fff;
 	text-decoration:none;
@@ -101,6 +101,52 @@ img{border:0;}
 #	border-bottom: 5px solid #689e18;
 	color:#5c3315;
 }
+
+/*menublogs*/
+#menublogs ul{
+	list-style:none;
+	margin-top:15px;
+	height:40px;
+	float:left;
+	width:100%;
+	margin-left:0px;
+	text-align: bottom;
+}
+
+#menublogs li{
+	display:inline;	
+	float:left;
+	/* width:87px; */
+	width: 100px;
+	margin-right:60px;
+	text-align:center;
+	background-color:#FFF;
+	margin-left:-40px;
+	text-transform:uppercase;
+}
+
+
+#menublogs a{
+	display:block;
+	font:15px Tahoma, Geneva, sans-serif;
+	color:#5c3315;
+	text-decoration:none;
+	line-height:30px;
+}
+
+#menublogs a:hover{
+	display:block;
+#	background-color:#fff;
+	text-decoration:none;
+	line-height:30px;
+	border-bottom: 5px solid #f8c301;
+#	border-bottom: 5px solid #689e18;
+	color:#5c3315;
+}
+
+
+
+
 
 .clear{clear:both;}
 
